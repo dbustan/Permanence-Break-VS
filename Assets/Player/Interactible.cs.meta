@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 6473614e52c20ee419b43fdb1cdcacc2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grabbedPhysicsMat: {fileID: 13400000, guid: ab4f44c8ef313bfe589945e886b6b1e6,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
