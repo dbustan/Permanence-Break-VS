@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.11480223, g: 0.11976789, b: 0.10575685, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.12107873, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2509,10 +2509,10 @@ LightingSettings:
   m_IndirectOutputScale: 1
   m_UsingShadowmask: 1
   m_BakeBackend: 2
-  m_LightmapMaxSize: 1024
+  m_LightmapMaxSize: 512
   m_BakeResolution: 40
   m_Padding: 2
-  m_LightmapCompression: 2
+  m_LightmapCompression: 1
   m_AO: 1
   m_AOMaxDistance: 1
   m_CompAOExponent: 1
@@ -7625,12 +7625,12 @@ PrefabInstance:
     - target: {fileID: 5702369808865855980, guid: 8546243e06b58674fa1431c8de47cc3c,
         type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.7072013
       objectReference: {fileID: 0}
     - target: {fileID: 5702369808865855980, guid: 8546243e06b58674fa1431c8de47cc3c,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.5223074
+      value: 0.40328693
       objectReference: {fileID: 0}
     - target: {fileID: 5870155047572573469, guid: 8546243e06b58674fa1431c8de47cc3c,
         type: 3}

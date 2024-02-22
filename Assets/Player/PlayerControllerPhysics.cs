@@ -29,6 +29,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
     public float walkingAcceleration, walkingDeceleration, walkingSpeedChangeRate, inAirDecelCoef;
     public RectTransform speedReadout;
     private float currentWalkingSpeed, currentWalkingSpeedPreCurve;
+    private float speedBarScaleHeight = 4.05f;
     
     // JUMPING
     [Header("Jumping")]
@@ -119,7 +120,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         speedReadout.localScale = new Vector3(1f, getSpeedReadoutScale(), 1f);
     }
     private float getSpeedReadoutScale() {
-        return 6*(currentWalkingSpeed/maxWalkingSpeed);
+        return speedBarScaleHeight*(currentWalkingSpeed/maxWalkingSpeed);
     }
     
     private bool isGrounded() {
