@@ -14,7 +14,7 @@ public class VisibilityManager : MonoBehaviour
 
     public RenderTexture pixelsTexture;
 
-    public RawImage debugImage, snapshotImage;
+    public RawImage debugImage;
     private RenderTexture debugTexture;
 
     // public Material visibleTestMat, hiddenTestMat;

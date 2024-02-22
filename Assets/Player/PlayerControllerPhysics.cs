@@ -34,10 +34,17 @@ public class PlayerControllerPhysics : MonoBehaviour {
     // JUMPING
     [Header("Jumping")]
     public float jumpHeight;
-    public float gravity, groundCheckDistance;
+    public float gravity, groundCheckDistance, maxStepHeight, stepClimbSpeed;
     public LayerMask groundCheckLayerMask;
     [SerializeField]
-    private bool grounded, jumping;
+    private bool grounded, jumping, wasStep;
+    private Vector3[] groundCheckDirections = {
+        Vector3.down,
+        new Vector3(1, -1, 0).normalized,
+        new Vector3(0, -1, 1).normalized,
+        new Vector3(-1, -1, 0).normalized,
+        new Vector3(0, -1, -1).normalized,
+    };
 
     // USER INPUT
     private bool moveFlag, jumpFlag;
@@ -124,10 +131,32 @@ public class PlayerControllerPhysics : MonoBehaviour {
     }
     
     private bool isGrounded() {
+        bool validHit = false;
+        for(int i = 0; i < groundCheckDirections.Length; i++) {
+            Vector3 direction = groundCheckDirections[i];
+            Vector3 origin = transform.position + Vector3.up * 0.5f + direction * 0.4f;
+            Debug.DrawRay(origin, direction * (groundCheckDistance + 0.1f), Color.red);
+            RaycastHit hit;
+            if(Physics.Raycast(origin, direction, out hit, groundCheckDistance + 0.1f, groundCheckLayerMask)) {
+                Interactible interactible = hit.collider.GetComponent<Interactible>();
+                if(interactible && interactible.grabbed) continue;
+                validHit = true;
+            }
+        }
+        return validHit;
+    }
+    private bool checkForStep() {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, out hit, groundCheckDistance + 0.1f, groundCheckLayerMask)) {
+        Debug.DrawRay(transform.position + Vector3.up * 0.01f, transform.rotation * Vector3.forward * 0.6f, Color.red);
+        Debug.DrawRay(transform.position + Vector3.up * maxStepHeight, transform.rotation * Vector3.forward * 0.6f, Color.red);
+        if(Physics.Raycast(transform.position + Vector3.up * 0.01f, transform.rotation * Vector3.forward, out hit, 0.6f, groundCheckLayerMask)) {
             Interactible interactible = hit.collider.GetComponent<Interactible>();
             if(interactible && interactible.grabbed) return false;
+            Debug.Log("STEP Detected 1");
+            if(Physics.Raycast(transform.position + Vector3.up * maxStepHeight, transform.rotation * Vector3.forward, 0.6f, groundCheckLayerMask)) {
+                Debug.Log("Too High");
+                return false;
+            }
             return true;
         }
         return false;
@@ -137,10 +166,20 @@ public class PlayerControllerPhysics : MonoBehaviour {
             tryJump(ref currentVelocity);
         }
         if(!grounded) {
-            if(jumping && currentVelocity.y < 0) {
+            if(jumping && currentVelocity.y <= 0) {
                 jumping = false;
             }
             currentVelocity += Vector3.down * gravity * Time.fixedDeltaTime;
+        } else if(!jumping) {
+            currentVelocity.y = 0;
+        }
+        if(checkForStep() && moveFlag) {
+            wasStep = true;
+            Debug.Log("STEP");
+            currentVelocity.y = stepClimbSpeed;
+        } else if(wasStep) {
+            wasStep = false;
+            currentVelocity.y = currentVelocity.y / 4;
         }
     }
     private void tryJump(ref Vector3 currentVelocity) {
