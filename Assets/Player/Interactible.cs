@@ -28,14 +28,12 @@ public class Interactible : MonoBehaviour
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.freezeRotation = true;
         grabbed = true;
     }
     public void drop() {
         rb.useGravity = true;
-        rb.freezeRotation = false;
         rb.mass = 1;
-        grabbed = true;
+        grabbed = false;
         GetComponent<Collider>().material = normalPhysicsMat;
         if(GetComponent<VisibilityObject>()) {
             GetComponent<VisibilityObject>().drop();

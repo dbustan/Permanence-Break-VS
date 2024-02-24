@@ -105,9 +105,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
                     currentVelocityXZ = currentVelocityXZ.normalized * absWalkSpeed;
                 }
             } else {
-                if(grounded) {
-                    decelerateOverride = true;
-                }
+                decelerateOverride = true;
                 currentVelocityXZ = currentVelocityXZ.normalized * lastMagnitude;
             }
         }
@@ -152,9 +150,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(Physics.Raycast(transform.position + Vector3.up * 0.01f, transform.rotation * Vector3.forward, out hit, 0.6f, groundCheckLayerMask)) {
             Interactible interactible = hit.collider.GetComponent<Interactible>();
             if(interactible && interactible.grabbed) return false;
-            Debug.Log("STEP Detected 1");
             if(Physics.Raycast(transform.position + Vector3.up * maxStepHeight, transform.rotation * Vector3.forward, 0.6f, groundCheckLayerMask)) {
-                Debug.Log("Too High");
                 return false;
             }
             return true;

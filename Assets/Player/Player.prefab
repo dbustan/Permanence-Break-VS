@@ -609,11 +609,14 @@ MonoBehaviour:
   jumpHeight: 2
   gravity: 9.8
   groundCheckDistance: 0.01
+  maxStepHeight: 0
+  stepClimbSpeed: 0
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 896
   grounded: 0
   jumping: 0
+  wasStep: 0
 --- !u!54 &2531083232161108386
 Rigidbody:
   m_ObjectHideFlags: 0
