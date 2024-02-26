@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-/*
+/* Description (:
     A one-handed Physics based physics based character controller.
     Only uses the mouse, with all instances of keyboard input existing
     solely for playtesting sessions and debuggig.
@@ -27,9 +28,13 @@ public class PlayerControllerPhysics : MonoBehaviour {
     [Header("Movment")]
     public float maxWalkingSpeed;
     public float walkingAcceleration, walkingDeceleration, walkingSpeedChangeRate, inAirDecelCoef;
-    public RectTransform speedReadout;
     private float currentWalkingSpeed, currentWalkingSpeedPreCurve;
-    private float speedBarScaleHeight = 4.05f;
+
+    // MOVEMENT
+    [Header("Walking Speed Bar")]
+    public RectTransform speedReadout;
+    public Color minColor, maxColor;
+    private float speedBarScaleHeight = 1f;
     
     // JUMPING
     [Header("Jumping")]
@@ -123,6 +128,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         currentWalkingSpeedPreCurve = Mathf.Clamp(currentWalkingSpeedPreCurve + Input.mouseScrollDelta.y * walkingSpeedChangeRate, -1, 1);
         currentWalkingSpeed = maxWalkingSpeed * Mathf.Pow(currentWalkingSpeedPreCurve, 2) * Mathf.Sign(currentWalkingSpeedPreCurve);
         speedReadout.localScale = new Vector3(1f, getSpeedReadoutScale(), 1f);
+        speedReadout.GetComponent<Image>().color = Color.Lerp(minColor, maxColor, (currentWalkingSpeed / maxWalkingSpeed + 1) / 2f);
     }
     private float getSpeedReadoutScale() {
         return speedBarScaleHeight*(currentWalkingSpeed/maxWalkingSpeed);
