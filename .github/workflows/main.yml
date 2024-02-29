@@ -3,10 +3,7 @@ name: Build Unity Projects and Deploy them
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - deployment
 
 permissions:
   pages: write # to deploy to Pages
