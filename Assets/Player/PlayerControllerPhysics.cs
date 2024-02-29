@@ -56,6 +56,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
     private Vector3 startingPosition;
 
+    private bool movementEnabled = true;
+
     void Start() {
         rb = GetComponent<Rigidbody>();
 
@@ -70,7 +72,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
     }
 
     void Update() {
-        moveFlag = Input.GetMouseButton(1);
+        moveFlag = movementEnabled && Input.GetMouseButton(1);
         if(Input.GetMouseButtonDown(2)) {
             jumpFlag = true;
         }
@@ -204,6 +206,13 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(currentCameraRotationX >= 180) currentCameraRotationX -= 360;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX + rotationDelta.x, -verticalRange/2, verticalRange/2);
         playerCamera.transform.localRotation = Quaternion.Euler(Vector3.right * currentCameraRotationX);
+    }
+
+    public void setMovementEnabled(bool enabled) {
+        movementEnabled = enabled;
+    }
+    public float getCurrentWalkingSpeed() {
+        return currentWalkingSpeed;
     }
 
 }
