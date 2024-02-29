@@ -57,7 +57,7 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
         if(heldObject) {
-            Vector3 distApart = heldTargetTransform.position - heldObject.transform.position;
+             Vector3 distApart = heldTargetTransform.position - heldObject.transform.position + new Vector3(0, 0.7f, 0);
             if(distApart.sqrMagnitude > Mathf.Pow(0.01f, 2)) {
                 heldObject.GetComponent<Rigidbody>().velocity = distApart * heldObjectTrackSpeed;
             } else {
