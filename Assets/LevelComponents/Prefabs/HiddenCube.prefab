@@ -138,7 +138,7 @@ MonoBehaviour:
   visible: 0
   phasedOut: 0
   grabbed: 0
-  mainRenderer: {fileID: 0}
+  mainRenderer: {fileID: 3281011381867727930}
 --- !u!1001 &1335385338431675125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -534,6 +534,12 @@ MonoBehaviour:
   maximumExtension: 0.0165
   overshootAmmount: 0.1
   speed: 2
+--- !u!23 &3281011381867727930 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4683669308469848369, guid: bb13ea9fdb74df5d89639f168638a55d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1335385338431675125}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4472833287725010217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6009332635546396708, guid: bb13ea9fdb74df5d89639f168638a55d,
