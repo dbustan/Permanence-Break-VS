@@ -84,8 +84,6 @@ jobs:
   release:
     name: Create Release
     runs-on: ubuntu-latest
-    needs: [build_windows]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' # Only create release on main branch pushes
     steps:
       # Checkout
       - name: Checkout repository
