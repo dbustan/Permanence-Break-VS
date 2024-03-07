@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ public class PlayerInteraction : MonoBehaviour
     private Camera playerCamera;
 
     private GameObject heldObject;
+    const KeyCode PAUSE_KEY = KeyCode.Escape;
     
     // Start is called before the first frame update
     void Start()
@@ -24,44 +26,51 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool grabButtonPressed = Input.GetMouseButtonDown(0);
-        RaycastHit hit;
-        Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * interactionDistance, Color.red);
-        interactionInfoText.text = "";
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionDistance, interactionLayerMask)) {
-            GameObject obj = hit.collider.gameObject;
-            Interactible objInterData = obj.GetComponent<Interactible>();
-            if(objInterData) {
-                if(objInterData.gameObject != heldObject) {
-                    interactionInfoText.rectTransform.anchoredPosition = getInteractibleCenterPos(objInterData);
-                    interactionInfoText.text = objInterData.interactionInfoText;
-                }
+        if (Input.GetKeyDown(PAUSE_KEY)) {
+            if (Time.timeScale == 0) PauseManager.pauseManagerInstance.UnpauseGame();
+            else PauseManager.pauseManagerInstance.PauseGame();
+        }
 
-                if(grabButtonPressed) {
-                    grabButtonPressed = false;
-                    if(heldObject) {
-                        heldObject.GetComponent<Interactible>().drop();
-                        heldObject = null;
-                    } else {
-                        heldObject = obj;
-                        heldObject.GetComponent<Interactible>().grab();
+        if (!PauseManager.pauseManagerInstance.IsPaused()) {
+            bool grabButtonPressed = Input.GetMouseButtonDown(0);
+            RaycastHit hit;
+            Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * interactionDistance, Color.red);
+            interactionInfoText.text = "";
+            if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, interactionDistance, interactionLayerMask)) {
+                GameObject obj = hit.collider.gameObject;
+                Interactible objInterData = obj.GetComponent<Interactible>();
+                if(objInterData) {
+                    if(objInterData.gameObject != heldObject) {
+                        interactionInfoText.rectTransform.anchoredPosition = getInteractibleCenterPos(objInterData);
+                        interactionInfoText.text = objInterData.interactionInfoText;
                     }
-                }
 
+                    if(grabButtonPressed) {
+                        grabButtonPressed = false;
+                        if(heldObject) {
+                            heldObject.GetComponent<Interactible>().drop();
+                            heldObject = null;
+                        } else {
+                            heldObject = obj;
+                            heldObject.GetComponent<Interactible>().grab();
+                        }
+                    }
+
+                }
             }
-        }
-        if(grabButtonPressed) {
+            if(grabButtonPressed) {
+                if(heldObject) {
+                    heldObject.GetComponent<Interactible>().drop();
+                    heldObject = null;
+                }
+            }
             if(heldObject) {
-                heldObject.GetComponent<Interactible>().drop();
-                heldObject = null;
-            }
-        }
-        if(heldObject) {
-             Vector3 distApart = heldTargetTransform.position - heldObject.transform.position + new Vector3(0, 0.7f, 0);
-            if(distApart.sqrMagnitude > Mathf.Pow(0.01f, 2)) {
-                heldObject.GetComponent<Rigidbody>().velocity = distApart * heldObjectTrackSpeed;
-            } else {
-                heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                Vector3 distApart = heldTargetTransform.position - heldObject.transform.position + new Vector3(0, 0.7f, 0);
+                if(distApart.sqrMagnitude > Mathf.Pow(0.01f, 2)) {
+                    heldObject.GetComponent<Rigidbody>().velocity = distApart * heldObjectTrackSpeed;
+                } else {
+                    heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
             }
         }
     }

@@ -1,31 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PauseManager : MonoBehaviour
 {
+    [SerializeField] GameObject menuCanvas, menu, optionsScreen, controlsScreen;
     const KeyCode PAUSE_KEY = KeyCode.Escape;
-    bool isPaused;
-    [SerializeField] GameObject pauseMenu;
+    public bool isPaused;
+    public static PauseManager pauseManagerInstance;
 
-    void Update() {
-        if (Input.GetKey(PAUSE_KEY)) {
-            if (!isPaused) PauseGame();
-            else UnpauseGame();
-        }
+    void Awake() {
+        pauseManagerInstance = this;
     }
 
-    void PauseGame() {
+    public void PauseGame() {
         Time.timeScale = 0;
-        pauseMenu.SetActive(true);
+        menuCanvas.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         isPaused = true;
     }
 
-    void UnpauseGame() {
+    public void UnpauseGame() {
         Time.timeScale = 1;
-        pauseMenu.SetActive(false);
+        optionsScreen.SetActive(false);
+        controlsScreen.SetActive(false);
+        menu.SetActive(true);
+        menuCanvas.SetActive(false);
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         isPaused = false;
+    }
+
+    public void OpenMenu() {
+        optionsScreen.SetActive(false);
+        controlsScreen.SetActive(false);
+        menu.SetActive(true);
+    }
+
+    public void OpenOptions() {
+        menu.SetActive(false);
+        optionsScreen.SetActive(true);
+    }
+
+    public void OpenControls() {
+        menu.SetActive(false);
+        controlsScreen.SetActive(true);
+    }
+
+    public bool IsPaused() {
+        return isPaused;
+    }
+
+    public void QuitGame() {
+        Application.Quit();
     }
 }
