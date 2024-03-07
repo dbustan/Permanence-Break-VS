@@ -10,15 +10,32 @@ public class MenuScript : MonoBehaviour
     [SerializeField] Button Play, Options, Quit;
     [SerializeField] GameObject loadingScreen, configScreen, mainMenuCanvas, mainMenuScreen, optionsScreen, creditsScreen, saveSlotScreen;
 
+    [SerializeField] SoundManager sm;
+
+    private AudioSource[] audioInMenu;
+
+    private AudioSource mainMenuMusic, buttonHover, buttonClick;
+
     GameObject currentScreen;
     List<GameObject> Dots = new List<GameObject>();
     int curr = 0;
 
     private void Start()
     {
-        currentScreen = loadingScreen;
-        GrabLoadingTextObj(loadingScreen.transform);
-        Invoke("SwitchToConfig", 5);
+        currentScreen = mainMenuScreen;
+        audioInMenu = GetComponents<AudioSource>();
+        audioSetup();
+        sm.playAudio(mainMenuMusic, "Music");
+        
+        //GrabLoadingTextObj(loadingScreen.transform);
+        //Invoke("SwitchToConfig", 5);
+    }
+
+    private void audioSetup(){
+        mainMenuMusic = audioInMenu[0];
+        buttonHover = audioInMenu[1];
+        buttonClick = audioInMenu[2];
+
     }
 
     private void GrabLoadingTextObj(Transform loadingScreenTransform)
@@ -89,6 +106,14 @@ public class MenuScript : MonoBehaviour
     public void LoadLevel()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+    }
+
+    public void onButtonHover(){
+        sm.playAudio(buttonHover, "Sound");
+    }
+
+    public void onButtonClick(){
+        sm.playAudio(buttonClick, "Sound");
     }
 
 
