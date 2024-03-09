@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-/*
+/* Description (:
     A one-handed Physics based physics based character controller.
     Only uses the mouse, with all instances of keyboard input existing
     solely for playtesting sessions and debuggig.
@@ -27,9 +28,13 @@ public class PlayerControllerPhysics : MonoBehaviour {
     [Header("Movment")]
     public float maxWalkingSpeed;
     public float walkingAcceleration, walkingDeceleration, walkingSpeedChangeRate, inAirDecelCoef;
-    public RectTransform speedReadout;
     private float currentWalkingSpeed, currentWalkingSpeedPreCurve;
-    private float speedBarScaleHeight = 4.05f;
+
+    // MOVEMENT
+    [Header("Walking Speed Bar")]
+    public RectTransform speedReadout;
+    public Color minColor, maxColor;
+    private float speedBarScaleHeight = 1f;
     
     // JUMPING
     [Header("Jumping")]
@@ -51,6 +56,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
     private Vector3 startingPosition;
 
+    private bool movementEnabled = true;
+
     void Start() {
         rb = GetComponent<Rigidbody>();
 
@@ -65,7 +72,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
     }
 
     void Update() {
-        moveFlag = Input.GetMouseButton(1);
+        moveFlag = movementEnabled && Input.GetMouseButton(1);
         if(Input.GetMouseButtonDown(2)) {
             jumpFlag = true;
         }
@@ -105,9 +112,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
                     currentVelocityXZ = currentVelocityXZ.normalized * absWalkSpeed;
                 }
             } else {
-                if(grounded) {
-                    decelerateOverride = true;
-                }
+                decelerateOverride = true;
                 currentVelocityXZ = currentVelocityXZ.normalized * lastMagnitude;
             }
         }
@@ -125,6 +130,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         currentWalkingSpeedPreCurve = Mathf.Clamp(currentWalkingSpeedPreCurve + Input.mouseScrollDelta.y * walkingSpeedChangeRate, -1, 1);
         currentWalkingSpeed = maxWalkingSpeed * Mathf.Pow(currentWalkingSpeedPreCurve, 2) * Mathf.Sign(currentWalkingSpeedPreCurve);
         speedReadout.localScale = new Vector3(1f, getSpeedReadoutScale(), 1f);
+        speedReadout.GetComponent<Image>().color = Color.Lerp(minColor, maxColor, (currentWalkingSpeed / maxWalkingSpeed + 1) / 2f);
     }
     private float getSpeedReadoutScale() {
         return speedBarScaleHeight*(currentWalkingSpeed/maxWalkingSpeed);
@@ -152,9 +158,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(Physics.Raycast(transform.position + Vector3.up * 0.01f, transform.rotation * Vector3.forward, out hit, 0.6f, groundCheckLayerMask)) {
             Interactible interactible = hit.collider.GetComponent<Interactible>();
             if(interactible && interactible.grabbed) return false;
-            Debug.Log("STEP Detected 1");
             if(Physics.Raycast(transform.position + Vector3.up * maxStepHeight, transform.rotation * Vector3.forward, 0.6f, groundCheckLayerMask)) {
-                Debug.Log("Too High");
                 return false;
             }
             return true;
@@ -202,6 +206,13 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(currentCameraRotationX >= 180) currentCameraRotationX -= 360;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX + rotationDelta.x, -verticalRange/2, verticalRange/2);
         playerCamera.transform.localRotation = Quaternion.Euler(Vector3.right * currentCameraRotationX);
+    }
+
+    public void setMovementEnabled(bool enabled) {
+        movementEnabled = enabled;
+    }
+    public float getCurrentWalkingSpeed() {
+        return currentWalkingSpeed;
     }
 
 }

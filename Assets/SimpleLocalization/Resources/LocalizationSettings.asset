@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63817d93022759543b57e795c78efe11, type: 3}
+  m_Name: LocalizationSettings
+  m_EditorClassIdentifier: 
+  TableId: 1ghNuOf1qKelUiRv7rmvvMvk9CpdCwRl-fpl2-Q6kZDU
+  Sheets:
+  - Name: MainMenu
+    Id: 0
+    TextAsset: {fileID: 4900000, guid: 247903abad8ee6d45be2e482e2bce0ab, type: 3}
+  - Name: Options
+    Id: 1819316037
+    TextAsset: {fileID: 4900000, guid: f8e7af50a142e8d48a5b9ff9c03a0dda, type: 3}
+  SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}

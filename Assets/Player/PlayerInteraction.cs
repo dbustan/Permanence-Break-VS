@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour
     public LayerMask interactionLayerMask;
     public Text interactionInfoText;
     public Transform heldTargetTransform;
-    public float heldObjectTrackSpeed;
+    public float heldObjectTrackSpeedCoef, heldObjectTrackSpeedMax, heldObjectRotSpeedCoef, heldObjectRotSpeedMax, dropDist;
 
     private Camera playerCamera;
 
@@ -67,14 +67,14 @@ public class PlayerInteraction : MonoBehaviour
             if(heldObject) {
                 Vector3 distApart = heldTargetTransform.position - heldObject.transform.position + new Vector3(0, 0.7f, 0);
                 if(distApart.sqrMagnitude > Mathf.Pow(0.01f, 2)) {
-                    heldObject.GetComponent<Rigidbody>().velocity = distApart * heldObjectTrackSpeed;
+                    heldObject.GetComponent<Rigidbody>().velocity = distApart * heldObjectTrackSpeedCoef;
                 } else {
                     heldObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 }
             }
         }
     }
-
+    
     private Vector2 getInteractibleCenterPos(Interactible interactible) {
         Vector3Int screenSize = new Vector3Int(playerCamera.pixelWidth, playerCamera.pixelHeight);
         return playerCamera.WorldToScreenPoint(interactible.getInteractionTextPosition()) - screenSize / 2;
