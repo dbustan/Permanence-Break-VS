@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Scene = UnityEngine.SceneManagement.Scene;
 
 public class SoundManager : MonoBehaviour
 {
-    private float musicVol,soundVol, masterVol, MASTER_AFFECTING;
+    private float musicVol,soundVol, masterVol, prevMaxMusicVol, prevMaxSoundVol;
     private GameObject backgroundMusicGameObj;
     private AudioSource backgroundMusic;
+
+    public Slider musicSlider, soundSlider;
     void Start()
     {
         //Add long term persistance
@@ -24,9 +27,8 @@ public class SoundManager : MonoBehaviour
 
     // Update is called once per frame
     public void playAudio (AudioSource soundSource, string type){
-        MASTER_AFFECTING = 1 - masterVol; 
         if (type == "Sound"){ 
-            soundSource.volume = soundVol - MASTER_AFFECTING;
+            soundSource.volume = soundVol;
             soundSource.Play();
         } else if (type == "Music") {
             soundSource.volume = musicVol;
@@ -48,9 +50,27 @@ public class SoundManager : MonoBehaviour
     
     public void ChangeMasterVol(float sliderVal){
         masterVol = sliderVal;
-        MASTER_AFFECTING = 1 - masterVol; 
-        backgroundMusic.volume = musicVol - MASTER_AFFECTING;
-        Debug.Log(backgroundMusic.volume);
+        prevMaxMusicVol = musicSlider.maxValue;
+        prevMaxSoundVol = soundSlider.maxValue;
+        musicSlider.maxValue = masterVol;
+        soundSlider.maxValue = masterVol;
+        if (musicSlider.value == prevMaxMusicVol){
+            musicSlider.value = masterVol;
+            
+        }
+        if (soundSlider.value == prevMaxSoundVol){
+            soundSlider.value = masterVol;
+        }
+        
+    }
+
+    public void ChangeMusicVol(float sliderVal) {
+        musicVol = sliderVal;
+        backgroundMusic.volume = musicVol;
+    }
+
+    public void ChangeSoundVol(float sliderVal){
+        soundVol = sliderVal;
         
     }
 }
