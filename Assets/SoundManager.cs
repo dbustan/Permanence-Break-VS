@@ -38,6 +38,21 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    //Useful for audios that may play the same audio more than once.
+    public void playAudio (ArrayList soundSources){
+        for (int i = 0; i < soundSources.Count; i++){
+            AudioSource audio = (AudioSource) soundSources[i];
+            if (audio != audio.isPlaying){
+                Debug.Log("hi");
+                audio.volume = soundVol;
+                audio.Play();
+                break;
+            }
+            
+        }
+       
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         PlayBackgroundMusic();
     }
