@@ -14,7 +14,7 @@ public class MenuScript : MonoBehaviour
 
     private AudioSource[] audioInMenu;
 
-    private AudioSource mainMenuMusic, buttonHover, buttonClick;
+    private AudioSource buttonHover, buttonClick;
 
     GameObject currentScreen;
     List<GameObject> Dots = new List<GameObject>();
@@ -25,16 +25,14 @@ public class MenuScript : MonoBehaviour
         currentScreen = mainMenuScreen;
         audioInMenu = GetComponents<AudioSource>();
         audioSetup();
-        sm.playAudio(mainMenuMusic, "Music");
         
         //GrabLoadingTextObj(loadingScreen.transform);
         //Invoke("SwitchToConfig", 5);
     }
 
     private void audioSetup(){
-        mainMenuMusic = audioInMenu[0];
-        buttonHover = audioInMenu[1];
-        buttonClick = audioInMenu[2];
+        buttonHover = audioInMenu[0];
+        buttonClick = audioInMenu[1];
 
     }
 
