@@ -21,7 +21,7 @@ public class MovementTutorialScript : MonoBehaviour
     void Update()
     {
         totalMouseMovement += Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"));
-        Debug.Log(totalMouseMovement);
+        //Debug.Log(totalMouseMovement);
         if(needLook && totalMouseMovement > 100) {
             player.setMovementEnabled(true);
             text.text = "Move using Right Mouse Button";

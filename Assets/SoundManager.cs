@@ -53,6 +53,20 @@ public class SoundManager : MonoBehaviour
        
     }
 
+    public void playAudio (AudioSource[] soundSources){
+        int index = UnityEngine.Random.Range(0, soundSources.Length-1);
+        AudioSource soundToPlay = soundSources[index];
+        if (!soundToPlay.isPlaying) {
+            soundToPlay.volume = soundVol;
+            
+            soundToPlay.Play();
+        } else {
+            playAudio(soundSources);
+        }
+
+       
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         PlayBackgroundMusic();
     }
