@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Assets.SimpleLocalization.Scripts;
+using TMPro;
 
 namespace Assets.SimpleLocalization
 {
@@ -11,6 +12,8 @@ namespace Assets.SimpleLocalization
 	public class Example : MonoBehaviour
 	{
 		public Text FormattedText;
+		[SerializeField] public TMP_FontAsset FontAssetEnglish;
+		[SerializeField] public TMP_FontAsset FontAssetChinese;
 
 		/// <summary>
 		/// Called on app start.
@@ -23,9 +26,11 @@ namespace Assets.SimpleLocalization
 			{
 				case SystemLanguage.Russian:
 					LocalizationManager.Language = "Chinese";
+					ChangeFont(FontAssetChinese);
 					break;
 				default:
 					LocalizationManager.Language = "English";
+					ChangeFont(FontAssetEnglish);
 					break;
 			}
 
@@ -42,7 +47,8 @@ namespace Assets.SimpleLocalization
 		public void SetLocalization(string localization)
 		{
 			LocalizationManager.Language = localization;
-			Debug.Log("CHANGED LANGUAGE");
+
+			Debug.Log(localization);
 		}
 
 
@@ -52,6 +58,19 @@ namespace Assets.SimpleLocalization
 		public void Review()
 		{
 			Application.OpenURL("https://www.assetstore.unity3d.com/#!/content/120113");
+		}
+
+		public void ChangeFont(TMP_FontAsset fontObject)
+		{
+			foreach (TextMeshPro textMeshPro3D in GameObject.FindObjectsOfType<TextMeshPro>())
+			{
+				textMeshPro3D.font = fontObject;
+			}
+
+			foreach (TextMeshProUGUI textMeshProUi in GameObject.FindObjectsOfType<TextMeshProUGUI>())
+			{
+				textMeshProUi.font = fontObject;
+			}
 		}
 	}
 }
