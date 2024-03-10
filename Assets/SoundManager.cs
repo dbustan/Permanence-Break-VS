@@ -53,15 +53,15 @@ public class SoundManager : MonoBehaviour
        
     }
 
-    public void playAudio (AudioSource[] soundSources){
+    public void playAudio (AudioSource[] soundSources, float valueToScale){
         int index = UnityEngine.Random.Range(0, soundSources.Length-1);
         AudioSource soundToPlay = soundSources[index];
         if (!soundToPlay.isPlaying) {
-            soundToPlay.volume = soundVol;
+            soundToPlay.volume = soundVol * valueToScale;
             
             soundToPlay.Play();
         } else {
-            playAudio(soundSources);
+            playAudio(soundSources, valueToScale);
         }
 
        

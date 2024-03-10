@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         float moveDistance = Vector3.Distance(transform.position, lastPos);
         if (moveDistance >= moveThreshold){
             lastPos = transform.position;
-            soundManager.playAudio(footsteps);
+      
             Debug.Log("hwdaad");
         }
         

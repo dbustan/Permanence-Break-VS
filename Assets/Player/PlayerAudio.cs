@@ -13,10 +13,14 @@ public class PlayerAudio : MonoBehaviour
     private GameObject soundManagerGameobj;
 
     private GameObject footstepsGameObj;
+
+     private float footstepsVol;
+
     [SerializeField]
     private float moveThreshold = 1.45f;
     void Start()
     {
+        footstepsVol = 0.2f;
         footstepsGameObj = gameObject.transform.GetChild(2).gameObject;
         footsteps = footstepsGameObj.GetComponents<AudioSource>();
         lastPos = transform.position;
@@ -31,7 +35,7 @@ public class PlayerAudio : MonoBehaviour
 
         if (moveDistance >= moveThreshold){
             lastPos = transform.position;
-            sm.playAudio(footsteps);
+            sm.playAudio(footsteps, footstepsVol);
         }
     }
 }
