@@ -17,6 +17,9 @@ MonoBehaviour:
   - Name: MainMenu
     Id: 0
     TextAsset: {fileID: 4900000, guid: 247903abad8ee6d45be2e482e2bce0ab, type: 3}
+  - Name: Saves
+    Id: 1168090053
+    TextAsset: {fileID: 4900000, guid: c1d10921f2556ba4ab807822788d55ba, type: 3}
   - Name: Options
     Id: 1819316037
     TextAsset: {fileID: 4900000, guid: f8e7af50a142e8d48a5b9ff9c03a0dda, type: 3}
