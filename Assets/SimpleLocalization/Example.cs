@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.SimpleLocalization.Scripts;
 using TMPro;
+using System.Collections.Generic;
 
 namespace Assets.SimpleLocalization
 {
@@ -14,6 +15,8 @@ namespace Assets.SimpleLocalization
 		public Text FormattedText;
 		[SerializeField] public TMP_FontAsset FontAssetEnglish;
 		[SerializeField] public TMP_FontAsset FontAssetChinese;
+		public List<TextMeshPro> textMeshProObjects;
+		public List<TextMeshProUGUI> textMeshProUiObjects;
 
 		/// <summary>
 		/// Called on app start.
@@ -47,8 +50,17 @@ namespace Assets.SimpleLocalization
 		public void SetLocalization(string localization)
 		{
 			LocalizationManager.Language = localization;
+			switch (localization)
+			{
+				case "English":
+					ChangeFont(FontAssetEnglish);
+					break;
+				case "Chinese":
+					ChangeFont(FontAssetChinese);
+					break;
+			}
 
-			Debug.Log(localization);
+
 		}
 
 
@@ -62,13 +74,13 @@ namespace Assets.SimpleLocalization
 
 		public void ChangeFont(TMP_FontAsset fontObject)
 		{
-			foreach (TextMeshPro textMeshPro3D in GameObject.FindObjectsOfType<TextMeshPro>())
-			{
-				textMeshPro3D.font = fontObject;
-			}
 
-			foreach (TextMeshProUGUI textMeshProUi in GameObject.FindObjectsOfType<TextMeshProUGUI>())
+			foreach (TextMeshProUGUI textMeshProUi in textMeshProUiObjects)
 			{
+				if (textMeshProUi.text == "中文")
+				{
+					continue;
+				}
 				textMeshProUi.font = fontObject;
 			}
 		}
