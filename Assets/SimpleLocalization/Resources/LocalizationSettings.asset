@@ -23,4 +23,7 @@ MonoBehaviour:
   - Name: Options
     Id: 1819316037
     TextAsset: {fileID: 4900000, guid: f8e7af50a142e8d48a5b9ff9c03a0dda, type: 3}
+  - Name: Cubes
+    Id: 953353791
+    TextAsset: {fileID: 4900000, guid: 2219c627257358347adb3ea3f16b4a64, type: 3}
   SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}
