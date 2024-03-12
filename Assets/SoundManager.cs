@@ -9,6 +9,7 @@ using Scene = UnityEngine.SceneManagement.Scene;
 
 public class SoundManager : MonoBehaviour
 {
+    //NOTE: Value of scale refers to if the sound source has a predetermined volume and you want it to continue to abide to that
     private float musicVol,soundVol, masterVol, prevMaxMusicVol, prevMaxSoundVol;
     private GameObject backgroundMusicGameObj;
     private AudioSource backgroundMusic;
@@ -25,13 +26,12 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    // Update is called once per frame
-    public void playAudio (AudioSource soundSource, string type){
+    public void playAudio (AudioSource soundSource, string type, float valueToScale = 1){
         if (type == "Sound"){ 
-            soundSource.volume = soundVol;
+            soundSource.volume = soundVol * valueToScale;
             soundSource.Play();
         } else if (type == "Music") {
-            soundSource.volume = musicVol;
+            soundSource.volume = musicVol * valueToScale;
             soundSource.Play();
         } else {
             Debug.Log("Inputted wrong prompt");
@@ -39,7 +39,7 @@ public class SoundManager : MonoBehaviour
     }
 
     //Useful for audios that may play the same audio more than once.
-    public void playAudio (ArrayList soundSources){
+    public void playAudio (ArrayList soundSources, float valueToScale = 1){
         for (int i = 0; i < soundSources.Count; i++){
             AudioSource audio = (AudioSource) soundSources[i];
             if (audio != audio.isPlaying){
@@ -53,12 +53,11 @@ public class SoundManager : MonoBehaviour
        
     }
 
-    public void playAudio (AudioSource[] soundSources, float valueToScale){
+    public void playAudio (AudioSource[] soundSources, float valueToScale = 1){
         int index = UnityEngine.Random.Range(0, soundSources.Length-1);
         AudioSource soundToPlay = soundSources[index];
         if (!soundToPlay.isPlaying) {
             soundToPlay.volume = soundVol * valueToScale;
-            
             soundToPlay.Play();
         } else {
             playAudio(soundSources, valueToScale);

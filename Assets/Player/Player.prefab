@@ -1714,7 +1714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876dd42eaf51c9d43ac86192f95b7372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveThreshold: 1.45
+  minSpeed: 0
+  maxSpeed: 7.5
+  minInterval: 0.2
+  maxInterval: 1
 --- !u!1 &6832358175246642665
 GameObject:
   m_ObjectHideFlags: 0
