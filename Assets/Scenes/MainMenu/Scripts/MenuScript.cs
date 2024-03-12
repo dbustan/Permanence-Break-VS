@@ -12,9 +12,11 @@ public class MenuScript : MonoBehaviour
 
     [SerializeField] SoundManager sm;
 
-    private AudioSource[] audioInMenu;
+    private AudioSource[] audioInMenu, buttonHovers;
 
-    private AudioSource mainMenuMusic, buttonHover, buttonClick;
+    ArrayList buttonHoverList = new ArrayList();
+
+    private AudioSource buttonClick;
 
     GameObject currentScreen;
     List<GameObject> Dots = new List<GameObject>();
@@ -25,15 +27,15 @@ public class MenuScript : MonoBehaviour
         currentScreen = mainMenuScreen;
         audioInMenu = GetComponents<AudioSource>();
         audioSetup();
-        sm.playAudio(mainMenuMusic, "Music");
         
         //GrabLoadingTextObj(loadingScreen.transform);
         //Invoke("SwitchToConfig", 5);
     }
 
     private void audioSetup(){
-        mainMenuMusic = audioInMenu[0];
-        buttonHover = audioInMenu[1];
+        buttonHoverList.Add(audioInMenu[0]);
+        buttonHoverList.Add(audioInMenu[1]);
+        //audioInMenu[1].Play();
         buttonClick = audioInMenu[2];
 
     }
@@ -109,7 +111,7 @@ public class MenuScript : MonoBehaviour
     }
 
     public void onButtonHover(){
-        sm.playAudio(buttonHover, "Sound");
+        sm.playAudio(buttonHoverList);
     }
 
     public void onButtonClick(){
