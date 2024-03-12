@@ -86,6 +86,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Q)) {
             Application.Quit();
         }
+
         updateCamera();
         updateSpeed();
     }
@@ -213,6 +214,10 @@ public class PlayerControllerPhysics : MonoBehaviour {
     }
     public float getCurrentWalkingSpeed() {
         return currentWalkingSpeed;
+    }
+
+    public bool getGrounded(){
+        return grounded;
     }
 
 }
