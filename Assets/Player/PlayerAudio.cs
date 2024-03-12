@@ -47,7 +47,6 @@ public class PlayerAudio : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Player mag - " + playerRb.velocity.magnitude);
         grounded = playerPhysics.getGrounded();
         if (grounded && playerRb.velocity.magnitude > 0.01){
             timePassed = FootstepsTimer();
@@ -55,7 +54,6 @@ public class PlayerAudio : MonoBehaviour
         } 
         if (timePassed || playerRb.velocity.magnitude < 0.001){
             
-            Debug.Log("reset");
             timeMoving = 0;
             timePassed = false;
         }

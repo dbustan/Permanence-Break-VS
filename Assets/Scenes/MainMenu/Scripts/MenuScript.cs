@@ -35,9 +35,8 @@ public class MenuScript : MonoBehaviour
     private void audioSetup(){
         buttonHoverList.Add(audioInMenu[0]);
         buttonHoverList.Add(audioInMenu[1]);
-        buttonHoverList.Add(audioInMenu[2]);
         //audioInMenu[1].Play();
-        buttonClick = audioInMenu[3];
+        buttonClick = audioInMenu[2];
 
     }
 
