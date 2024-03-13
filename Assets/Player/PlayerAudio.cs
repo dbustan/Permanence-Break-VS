@@ -64,8 +64,6 @@ public class PlayerAudio : MonoBehaviour
         float speed = playerRb.velocity.magnitude;
         float normalizedSpeed = NormalizeSpeed(speed, minSpeed, maxSpeed);
         float timeBetweenSound = ScaleInterval(normalizedSpeed, minInterval, maxInterval);
-        Debug.Log("Time between sound - " + timeBetweenSound);
-        Debug.Log("Time moved - " + timeMoving);
         if (timeMoving >= timeBetweenSound) {
             sm.playAudio(footsteps, footstepsVol);
             return true;
