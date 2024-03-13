@@ -3905,6 +3905,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5764421684347669837, guid: 6491a1404840cf54c9751f263da2ec13,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5780342872842555212, guid: 6491a1404840cf54c9751f263da2ec13,
         type: 3}
       propertyPath: m_fontColor.b
@@ -9164,13 +9169,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 962195720}
     - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1095344589}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetLocalization
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: refreshText
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MovementTutorialScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 764710994017207683, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1652425853382593880, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
@@ -9231,6 +9271,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940914450702816301, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 330.3
       objectReference: {fileID: 0}
     - target: {fileID: 4047895954847105128, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
@@ -9464,13 +9509,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 962195720}
     - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1095344589}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetLocalization
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: refreshText
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MovementTutorialScript, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454604295567514115, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6791237271058387625, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
@@ -9516,6 +9596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7934221501032390380, guid: 576a228d7df159249a42f5c424e3c9b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8108691060114026087, guid: 576a228d7df159249a42f5c424e3c9b0,
         type: 3}
