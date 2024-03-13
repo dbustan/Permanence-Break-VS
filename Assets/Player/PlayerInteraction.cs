@@ -46,7 +46,7 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (objInterData.gameObject != heldObject)
                     {
-                        interactionInfoText.rectTransform.anchoredPosition = getInteractibleCenterPos(objInterData);
+                        interactionInfoText.rectTransform.anchoredPosition = getInteractibleCenterPos(objInterData) - new Vector2(0, 100f);
                         interactionInfoText.text = objInterData.interactionText.text;
                     }
 
