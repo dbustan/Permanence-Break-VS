@@ -17,6 +17,8 @@ namespace Assets.SimpleLocalization
 		[SerializeField] public TMP_FontAsset FontAssetChinese;
 		public List<TextMeshPro> textMeshProObjects;
 		public List<TextMeshProUGUI> textMeshProUiObjects;
+		[SerializeField] public Image ControlsGraphic;
+		[SerializeField] public Sprite Eng, Chi;
 
 		/// <summary>
 		/// Called on app start.
@@ -29,10 +31,12 @@ namespace Assets.SimpleLocalization
 			{
 				case "Chinese":
 					ChangeFont(FontAssetChinese);
+					ControlsGraphic.sprite = Chi;
 					break;
 				default:
 					LocalizationManager.Language = "English";
 					ChangeFont(FontAssetEnglish);
+					ControlsGraphic.sprite = Eng;
 					break;
 			}
 
@@ -53,9 +57,11 @@ namespace Assets.SimpleLocalization
 			{
 				case "English":
 					ChangeFont(FontAssetEnglish);
+					ControlsGraphic.sprite = Eng;
 					break;
 				case "Chinese":
 					ChangeFont(FontAssetChinese);
+					ControlsGraphic.sprite = Chi;
 					break;
 			}
 
