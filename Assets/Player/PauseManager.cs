@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -53,7 +55,7 @@ public class PauseManager : MonoBehaviour
         return isPaused;
     }
 
-    public void QuitGame() {
-        Application.Quit();
+    public void ReturnToMenu() {
+        SceneManager.LoadScene("MainMenu");
     }
 }
