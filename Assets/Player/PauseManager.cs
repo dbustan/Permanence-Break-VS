@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
+
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -21,8 +21,8 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0;
         menuCanvas.SetActive(true);
-
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         isPaused = true;
     }
 
