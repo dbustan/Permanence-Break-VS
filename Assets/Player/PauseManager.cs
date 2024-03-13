@@ -12,11 +12,13 @@ public class PauseManager : MonoBehaviour
     public bool isPaused;
     public static PauseManager pauseManagerInstance;
 
-    void Awake() {
+    void Awake()
+    {
         pauseManagerInstance = this;
     }
 
-    public void PauseGame() {
+    public void PauseGame()
+    {
         Time.timeScale = 0;
         menuCanvas.SetActive(true);
         Cursor.visible = true;
@@ -24,7 +26,8 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
     }
 
-    public void UnpauseGame() {
+    public void UnpauseGame()
+    {
         Time.timeScale = 1;
         optionsScreen.SetActive(false);
         controlsScreen.SetActive(false);
@@ -35,27 +38,32 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
     }
 
-    public void OpenMenu() {
+    public void OpenMenu()
+    {
         optionsScreen.SetActive(false);
         controlsScreen.SetActive(false);
         menu.SetActive(true);
     }
 
-    public void OpenOptions() {
+    public void OpenOptions()
+    {
         menu.SetActive(false);
         optionsScreen.SetActive(true);
     }
 
-    public void OpenControls() {
+    public void OpenControls()
+    {
         menu.SetActive(false);
         controlsScreen.SetActive(true);
     }
 
-    public bool IsPaused() {
+    public bool IsPaused()
+    {
         return isPaused;
     }
 
-    public void ReturnToMenu() {
+    public void ReturnToMenu()
+    {
         SceneManager.LoadScene("MainMenu");
     }
 }
