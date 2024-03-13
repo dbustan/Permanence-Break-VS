@@ -24,15 +24,18 @@ public class MenuScript : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         currentScreen = mainMenuScreen;
         audioInMenu = GetComponents<AudioSource>();
         audioSetup();
-        
+
         //GrabLoadingTextObj(loadingScreen.transform);
         //Invoke("SwitchToConfig", 5);
     }
 
-    private void audioSetup(){
+    private void audioSetup()
+    {
         buttonHoverList.Add(audioInMenu[0]);
         buttonHoverList.Add(audioInMenu[1]);
         //audioInMenu[1].Play();
@@ -107,14 +110,19 @@ public class MenuScript : MonoBehaviour
 
     public void LoadLevel()
     {
+        currentScreen.SetActive(false);
+        mainMenuScreen.SetActive(true);
+        currentScreen = mainMenuScreen;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
     }
 
-    public void onButtonHover(){
+    public void onButtonHover()
+    {
         sm.playAudio(buttonHoverList);
     }
 
-    public void onButtonClick(){
+    public void onButtonClick()
+    {
         sm.playAudio(buttonClick, "Sound");
     }
 

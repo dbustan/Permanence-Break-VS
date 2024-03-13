@@ -21,7 +21,7 @@ public class PauseManager : MonoBehaviour
     {
         Time.timeScale = 0;
         menuCanvas.SetActive(true);
-        Cursor.visible = true;
+
         Cursor.lockState = CursorLockMode.None;
         isPaused = true;
     }
@@ -64,6 +64,7 @@ public class PauseManager : MonoBehaviour
 
     public void ReturnToMenu()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene("MainMenu");
     }
 }
