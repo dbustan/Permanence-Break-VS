@@ -8,12 +8,23 @@ public class DoorAudio : MonoBehaviour
 
    [SerializeField] 
 
-   private AudioSource closedDoor, openDoor;
+   private AudioSource openDoor, closeDoor;
 
    private Door door;
 
+   private SoundManager sm;
+
+   private GameObject soundManagerObj;
+
     void Start()
     {
+        soundManagerObj = GameObject.Find("SoundManager");
+        sm = soundManagerObj.GetComponent<SoundManager>();
+
+        AudioSource[] doorNoises = GetComponents<AudioSource>();
+
+        openDoor = doorNoises[0];
+        closeDoor = doorNoises[1];
         door = GetComponent<Door>();
         currentOpenState = door.getOpenState();
     }
@@ -23,12 +34,13 @@ public class DoorAudio : MonoBehaviour
     {
         newOpenState = door.getOpenState();
         if (currentOpenState != newOpenState){
-            if (currentOpenState){
-                //opening sound effect
-            } else {
-                //closing
-            }
             currentOpenState = newOpenState;
+            if (currentOpenState){
+                sm.playAudio(openDoor, "Sound");
+            } else {
+                sm.playAudio(closeDoor, "Sound");
+            }
+            
         }
     }
 }

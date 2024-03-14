@@ -15,7 +15,9 @@ public class CubeAudio : MonoBehaviour
     private VisibilityObject visibleOfObj;
     void Start()
     {
-        visibleOfObj = GetComponent<VisibilityObject>();
+            visibleOfObj = GetComponent<VisibilityObject>();
+        
+        
         blockSounds = GetComponents<AudioSource>();
         soundManagerObj = GameObject.Find("SoundManager");
         sm = soundManagerObj.GetComponent<SoundManager>();
@@ -27,15 +29,20 @@ public class CubeAudio : MonoBehaviour
             if (exists){
                 sm.playAudio(blockSounds, valueToScale);
             }
+            if (visibleOfObj == null){
+                sm.playAudio(blockSounds, valueToScale);
+            }
+            
         }
     }
 
     private void OnCollisionExit(Collision other) {
-        if (visibleOfObj.phasedOut){
-            exists = false;
-        } else {
-            Debug.Log("hi");
-            exists = true;
+        if (visibleOfObj != null){
+            if (visibleOfObj.phasedOut){
+                exists = false;
+            } else {
+                exists = true;
+            }
         }
     }
 
