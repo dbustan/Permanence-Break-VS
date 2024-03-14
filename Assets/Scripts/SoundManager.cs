@@ -11,24 +11,38 @@ using Scene = UnityEngine.SceneManagement.Scene;
 public class SoundManager : MonoBehaviour
 {
     //NOTE: Value of scale refers to if the sound source has a predetermined volume and you want it to continue to abide to that
-    private float musicVol, soundVol, masterVol, prevMaxMusicVol, prevMaxSoundVol;
-    private GameObject backgroundMusicGameObj, pauseMenu, config;
+    private float musicVol, soundVol, masterVol;
+
+    private float musicSliderVal, soundSliderVal, masterSliderVal;
+    private GameObject backgroundMusicGameObj;
     private AudioSource backgroundMusic;
 
     private float originalMusicVol, originalSoundVol;
 
+    public static SoundManager instance;
     void Start()
     {
-        //Add long term persistance
+        if (instance == null){
+            instance = this;
+        } else {
+            Destroy(this.gameObject);
+        }
+
         masterVol = 1;
         musicVol = 1;
         soundVol = 1;
+
+        masterSliderVal = 1;
+        musicSliderVal = 1;
+        soundSliderVal = 1;
         originalMusicVol = 1;
         originalSoundVol = 1;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         PlayBackgroundMusic();
-        DontDestroyOnLoad(this);
+
+        
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void playAudio(AudioSource soundSource, string type, float valueToScale = 1)
@@ -100,6 +114,7 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeMasterVol(float sliderVal)
     {
+        masterSliderVal = sliderVal;
         masterVol = sliderVal;
         musicVol = originalMusicVol * masterVol;
 
@@ -110,6 +125,7 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeMusicVol(float sliderVal)
     {
+        musicSliderVal = sliderVal;
         musicVol = sliderVal * masterVol;
         Debug.Log(musicVol);
         originalMusicVol = musicVol;
@@ -118,24 +134,25 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeSoundVol(float sliderVal)
     {
+        soundSliderVal = sliderVal;
         soundVol = sliderVal * soundVol;
         originalSoundVol = soundVol;
         soundVol = sliderVal;
 
     }
 
-    public float GetMusicVol()
+    public float GetMusicSliderVal()
     {
-        return musicVol;
+        return musicSliderVal;
     }
 
-    public float GetMasterVol()
+    public float GetMasterSliderVal()
     {
-        return masterVol;
+        return masterSliderVal;
     }
 
-    public float GetSoundvol()
+    public float GetSoundSliderVal()
     {
-        return soundVol;
+        return soundSliderVal;
     }
 }

@@ -13,9 +13,9 @@ public class Config : MonoBehaviour
         private void Start() {
             soundManagerObj = GameObject.Find("SoundManager");
             sm = soundManagerObj.GetComponent<SoundManager>();
-            masterVol.value = sm.GetMasterVol();
-            musicVol.value = sm.GetMusicVol();
-            soundVol.value = sm.GetSoundvol();
+            masterVol.value = sm.GetMasterSliderVal();
+            musicVol.value = sm.GetMusicSliderVal();
+            soundVol.value = sm.GetSoundSliderVal();
 
 
             masterVol.onValueChanged.AddListener(sm.ChangeMasterVol);

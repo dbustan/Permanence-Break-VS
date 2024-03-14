@@ -15,8 +15,7 @@ public class CubeAudio : MonoBehaviour
     private VisibilityObject visibleOfObj;
     void Start()
     {
-            visibleOfObj = GetComponent<VisibilityObject>();
-        
+        visibleOfObj = GetComponent<VisibilityObject>();
         
         blockSounds = GetComponents<AudioSource>();
         soundManagerObj = GameObject.Find("SoundManager");
