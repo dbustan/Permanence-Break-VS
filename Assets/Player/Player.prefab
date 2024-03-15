@@ -807,6 +807,8 @@ MonoBehaviour:
   walkingSpeedChangeRate: 0.35
   inAirDecelCoef: 0.2
   speedReadout: {fileID: 5317343730503743443}
+  minColor: {r: 0, g: 0, b: 0, a: 0}
+  maxColor: {r: 0, g: 0, b: 0, a: 0}
   jumpHeight: 2
   gravity: 9.8
   groundCheckDistance: 0.01
