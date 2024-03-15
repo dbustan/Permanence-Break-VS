@@ -9,10 +9,13 @@ public class MenuScript : MonoBehaviour
 {
     [SerializeField] Button Play, Options, Quit;
     [SerializeField] GameObject loadingScreen, configScreen, mainMenuCanvas, mainMenuScreen, optionsScreen, creditsScreen, saveSlotScreen;
-
+    
+    [SerializeField] private SaveManager saveManager;
     [SerializeField] SoundManager sm;
 
     private AudioSource[] audioInMenu, buttonHovers;
+
+
 
     ArrayList buttonHoverList = new ArrayList();
 

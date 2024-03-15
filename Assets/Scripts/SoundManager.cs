@@ -141,6 +141,18 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public float GetMasterVol(){
+        return masterVol;
+    }
+
+    public float GetSoundVol(){
+        return soundVol;
+    }
+
+    public float GetMusicVol(){
+        return musicVol;
+    }
+
     public float GetMusicSliderVal()
     {
         return musicSliderVal;
