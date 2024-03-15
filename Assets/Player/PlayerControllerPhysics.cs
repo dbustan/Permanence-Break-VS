@@ -20,9 +20,11 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
     // CAMERA CONTROL
     [Header("Camera Control")]
+    const float DEFAULT_SENSITIVITY = 100f;
     public float cameraSensitivity;
     public float verticalRange;
     private Camera playerCamera;
+    public Slider sensitivitySlider;
     
     // MOVEMENT
     [Header("Movment")]
@@ -69,6 +71,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
         moveFlag = jumpFlag = false;
         startingPosition = transform.position;
+        cameraSensitivity = DEFAULT_SENSITIVITY;
+        sensitivitySlider.value = DEFAULT_SENSITIVITY;
     }
 
     void Update() {
@@ -207,6 +211,11 @@ public class PlayerControllerPhysics : MonoBehaviour {
         if(currentCameraRotationX >= 180) currentCameraRotationX -= 360;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX + rotationDelta.x, -verticalRange/2, verticalRange/2);
         playerCamera.transform.localRotation = Quaternion.Euler(Vector3.right * currentCameraRotationX);
+    }
+
+    public void updateSensitivity(float newSens) {
+        Debug.Log(newSens);
+        cameraSensitivity = newSens;
     }
 
     public void setMovementEnabled(bool enabled) {
