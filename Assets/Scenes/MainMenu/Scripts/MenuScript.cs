@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.PlasticSCM.Editor.WebApi;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     [SerializeField] Button Play, Options, Quit;
-    [SerializeField] GameObject loadingScreen, configScreen, mainMenuCanvas, mainMenuScreen, optionsScreen, creditsScreen, saveSlotScreen;
+    [SerializeField] GameObject loadingScreen, configScreen, mainMenuCanvas, mainMenuScreen, optionsScreen, creditsScreen, saveSlotScreen, levelSelectScreen;
     
     [SerializeField] private SaveManager saveManager;
     [SerializeField] SoundManager sm;
@@ -90,6 +91,12 @@ public class MenuScript : MonoBehaviour
         currentScreen.SetActive(false);
         optionsScreen.SetActive(true);
         currentScreen = optionsScreen;
+    }
+
+    public void OpenLevelSelect(){
+        currentScreen.SetActive(false);
+        levelSelectScreen.SetActive(true);
+        currentScreen = levelSelectScreen;
     }
 
     public void OpenCreditsScreen()

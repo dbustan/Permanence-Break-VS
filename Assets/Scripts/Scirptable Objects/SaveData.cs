@@ -4,9 +4,10 @@ using UnityEngine;
   [CreateAssetMenu(fileName = "SaveData", menuName = "ScriptableObjects/SaveData", order = 1)]
 public class SaveData : ScriptableObject
 {
+    public string saveDataName;
     public string currentLevel;
 
-    public string currentSlot;
+    public string currentSlotInfo;
 
     public float currentMasterVol, currentMusicVol, currentSoundVol;
 
@@ -15,8 +16,7 @@ public class SaveData : ScriptableObject
 
     public string currentLanguage;
 
-    public string slotInfo;
-
+    public bool GameBeat;
     public bool currentGrayScale;
 
     

@@ -16,74 +16,93 @@ public class SaveManager : MonoBehaviour
     [SerializeField] 
     private GameObject saveSlot1, saveSlot2, saveSlot3;
 
+    SaveData currentSaveData;
 
-    private string currentLanguage;
-
-    SaveData currentSave;
+    Save currentSaveSlot;
 
     private string path;
 
-    private string currentSaveSlot;
-    //We want to store our current Scene as a string, and when we load in we want the game to have reference to what
+   
+
+
     void Start()
     {
         sm = soundManagerObj.GetComponent<SoundManager>();
         DontDestroyOnLoad(gameObject);
         path = Application.persistentDataPath;
+        CheckData(path);
         SceneManager.sceneLoaded += OnSceneLoaded;    
     }
 
 
-    //Will check and update per game launch, going to each saveslot 
-    //Setting current level in the script of each one.
+
+
+    //Each Slot will have its saveslot updated here
     private void CheckData(string path){
+        GameObject[] saveSlots = {saveSlot1, saveSlot2, saveSlot3};
+        
+        foreach (GameObject saveSlot in saveSlots){
+            Save saveSlotSave = saveSlot.GetComponent<Save>();
+            SaveData saveSlotData = saveSlotSave.GetSaveData();
+            string saveSlotPath = Path.Combine(path, saveSlotData.saveDataName + ".json");
+            string json = File.ReadAllText(saveSlotPath);
+            SaveData parsedSaveData = JsonUtility.FromJson<SaveData>(json);
+            saveSlotSave.SetSaveData(parsedSaveData);
+        }
+            
+            
         
     }
 
-    //We want it to save per level complete
 
-    //Perhaps we can also just like update it whenever the player clicks save in pause
      void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name != "MainMenu"){
-            UpdateSaveFile(currentSave, scene.name, sm);   
+        if (scene.name != "MainMenu" && !currentSaveData.GameBeat){
+            UpdateSaveFile(currentSaveData, scene.name, sm);   
         } else if (scene.name == "Credits"){
-            currentSave.currentLevel = null;
-            currentSaveSlot = "Level Select Mode!";
-            currentSave.currentMasterVol = sm.GetMasterVol();
-            currentSave.currentMusicVol = sm.GetMusicVol();
-            currentSave.currentSoundVol = sm.GetSoundVol();
-            currentSave.currentMusicSlider = sm.GetMusicSliderVal();
-            currentSave.currentMasterSlider = sm.GetMasterSliderVal();
-            currentSave.currentSoundSlider = sm.GetSoundSliderVal();
+            currentSaveData.currentLevel = null;
+            currentSaveData.currentSlotInfo = "Level Select Mode!";
+            currentSaveData.GameBeat = true;
+            currentSaveData.currentMasterVol = sm.GetMasterVol();
+            currentSaveData.currentMusicVol = sm.GetMusicVol();
+            currentSaveData.currentSoundVol = sm.GetSoundVol();
+            currentSaveData.currentMusicSlider = sm.GetMusicSliderVal();
+            currentSaveData.currentMasterSlider = sm.GetMasterSliderVal();
+            currentSaveData.currentSoundSlider = sm.GetSoundSliderVal();
         }
     }
 
     private void UpdateSaveFile(SaveData currentSave, string sceneName, SoundManager sm){
         currentSave.currentLevel = sceneName;
-        currentSave.slotInfo = sceneName;
+        currentSave.currentSlotInfo = sceneName;
         currentSave.currentMasterVol = sm.GetMasterVol();
         currentSave.currentMusicVol = sm.GetMusicVol();
         currentSave.currentSoundVol = sm.GetSoundVol();
         currentSave.currentMusicSlider = sm.GetMusicSliderVal();
         currentSave.currentMasterSlider = sm.GetMasterSliderVal();
         currentSave.currentSoundSlider = sm.GetSoundSliderVal();
+        Debug.Log("Saving!");
     }
   
 
     public void SetCurrentGameSlot(GameObject SaveSlotObj) {
-        currentSaveSlot = SaveSlotObj.name;
+        currentSaveSlot = SaveSlotObj.GetComponent<Save>();
+        currentSaveData = currentSaveSlot.GetSaveData();
+        Debug.Log("Save " + currentSaveData.saveDataName + " Locked in!");
     }
 
+    private void OnApplicationQuit() {
+        CreateJSON();
+    }
     private void CreateJSON(){
-       
-       string json = JsonUtility.ToJson(currentSave);
-       string specificFilePath = path + currentSave.currentSlot +".json";
-       File.WriteAllText(path, json);
+       string json = JsonUtility.ToJson(currentSaveData);
+       string specificFilePath = Path.Combine(path, currentSaveData.saveDataName + ".json");
+       File.WriteAllText(specificFilePath, json);
     }
 
-    public void SetcurrentLanguage(){
-
+    //TO-DO
+    public void SetCurrentLanguage(){
+        
     }
 
 
