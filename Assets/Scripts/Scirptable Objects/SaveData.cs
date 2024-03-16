@@ -10,8 +10,12 @@ public class SaveData : ScriptableObject
 
     public float currentMasterVol, currentMusicVol, currentSoundVol;
 
+    public float currentMasterSlider, currentMusicSlider, currentSoundSlider;
     public float currentMouseSens;
- 
+
+    public string currentLanguage;
+
+    public string slotInfo;
 
     public bool currentGrayScale;
 

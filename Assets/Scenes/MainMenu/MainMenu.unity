@@ -3025,6 +3025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2b4acfa7ee26e47a80c1c3002b68f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 2136603878}
 --- !u!114 &1214327168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3037,6 +3038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2b4acfa7ee26e47a80c1c3002b68f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 2136603878}
 --- !u!114 &1214327169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3049,6 +3051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2b4acfa7ee26e47a80c1c3002b68f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 2136603878}
 --- !u!1 &1300226989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 32129331594321406, guid: c29be8486aa85f843b2b6e516ef72825,
@@ -4481,6 +4484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SoundManagerObj: {fileID: 0}
+  CurrentSaveSlot: {fileID: 0}
 --- !u!4 &2136603879
 Transform:
   m_ObjectHideFlags: 0

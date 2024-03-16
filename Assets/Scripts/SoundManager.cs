@@ -71,7 +71,6 @@ public class SoundManager : MonoBehaviour
             AudioSource audio = (AudioSource)soundSources[i];
             if (audio != audio.isPlaying)
             {
-                Debug.Log("hi");
                 audio.volume = soundVol;
                 audio.Play();
                 break;
@@ -127,7 +126,6 @@ public class SoundManager : MonoBehaviour
     {
         musicSliderVal = sliderVal;
         musicVol = sliderVal * masterVol;
-        Debug.Log(musicVol);
         originalMusicVol = musicVol;
         backgroundMusic.volume = musicVol;
     }
