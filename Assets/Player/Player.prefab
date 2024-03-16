@@ -1573,7 +1573,7 @@ GameObject:
   - component: {fileID: 3338799572391966749}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1610,6 +1610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSensitivity: 250
   verticalRange: 160
+  sensitivitySlider: {fileID: 0}
   maxWalkingSpeed: 7.5
   walkingAcceleration: 30
   walkingDeceleration: 30
