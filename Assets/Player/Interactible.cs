@@ -1,13 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
-public class Interactible : MonoBehaviour
-{
+public class Interactible : MonoBehaviour {
 
-    public TMPro.TMP_Text interactionText;
+    public String interactionText;
     public Vector3 interactionTextOffset;
     public PhysicMaterial grabbedPhysicsMat;
     public bool grabbed;
@@ -15,16 +14,13 @@ public class Interactible : MonoBehaviour
 
     private Rigidbody rb;
 
-    private void Start()
-    {
+    private void Start() {
         rb = GetComponent<Rigidbody>();
         grabbed = false;
     }
 
-    public void grab()
-    {
-        if (GetComponent<VisibilityObject>())
-        {
+    public void grab() {
+        if (GetComponent<VisibilityObject>()) {
             GetComponent<VisibilityObject>().grab();
         }
         rb.mass = 0;
@@ -35,29 +31,17 @@ public class Interactible : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         grabbed = true;
     }
-    public void drop()
-    {
+    public void drop() {
         rb.useGravity = true;
         rb.mass = 1;
         grabbed = false;
         GetComponent<Collider>().material = normalPhysicsMat;
-        if (GetComponent<VisibilityObject>())
-        {
+        if (GetComponent<VisibilityObject>()) {
             GetComponent<VisibilityObject>().drop();
         }
     }
 
-    public Vector3 getInteractionTextPosition()
-    {
+    public Vector3 getInteractionTextPosition() {
         return transform.position + interactionTextOffset;
-    }
-
-    private void disablePlayerCollision(bool disable)
-    {
-        PlayerControllerPhysics player = FindObjectOfType<PlayerControllerPhysics>();
-        if (player)
-        {
-            Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>(), disable);
-        }
     }
 }
