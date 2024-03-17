@@ -81,9 +81,9 @@ public class SaveManager : MonoBehaviour
             SoundValues soundVals = JsonUtility.FromJson<SoundValues>(audioJson);
             sm.SetOriginalMusic(soundVals.originalMusicVol);
             sm.SetOriginalSound(soundVals.originalSoundVol);
-            sm.ChangeMasterVol(soundVals.masterVol);
-            sm.ChangeMusicVol(soundVals.musicVol);
-            sm.ChangeSoundVol(soundVals.soundVol);
+            sm.ChangeMasterVol(soundVals.masterSliderVal);
+            sm.ChangeMusicVol(soundVals.musicSliderVal);
+            sm.ChangeSoundVol(soundVals.soundSliderVal);
             
             
 
