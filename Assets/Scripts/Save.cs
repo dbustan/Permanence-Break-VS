@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -19,23 +20,22 @@ public class Save : MonoBehaviour
 
    private SaveData save; 
 
+   private void Awake(){
+
+   }
    private void Start(){
-      GenerateBlankSaveSlot();
+      
    }
    public void OnClick(){
-        saveManager.SetCurrentGameSlot(gameObject);
-        
-        if (!save.GameBeat){
-         SceneManager.LoadScene(save.currentLevel);
-        } else {
-            menuManager.OpenLevelSelect();
-        }
-        
+      save = saveManager.SetCurrentGameSlot(gameObject.name);
+      SceneManager.LoadScene(save.currentLevel);
+       
    }
 
    private void GenerateBlankSaveSlot(){
       save = SaveData.CreateInstance<SaveData>();
       save.saveDataName = gameObject.name;
+      //saveDescription.text = save.currentSlotInfo;
    }
 
    public SaveData GetSaveData(){

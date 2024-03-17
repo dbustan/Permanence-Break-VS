@@ -24,6 +24,7 @@ public class SoundManager : MonoBehaviour
     {
         if (instance == null){
             instance = this;
+             DontDestroyOnLoad(this.gameObject);
         } else {
             Destroy(this.gameObject);
         }
@@ -42,7 +43,7 @@ public class SoundManager : MonoBehaviour
         PlayBackgroundMusic();
 
         
-        DontDestroyOnLoad(this.gameObject);
+       
     }
 
     public void playAudio(AudioSource soundSource, string type, float valueToScale = 1)
@@ -56,6 +57,7 @@ public class SoundManager : MonoBehaviour
         {
             soundSource.volume = musicVol * valueToScale;
             soundSource.Play();
+            
         }
         else
         {

@@ -18,7 +18,6 @@ public class MovementTutorialScript : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(look.text);
         state = "look";
         text.text = look.text;
         player.setMovementEnabled(false);
