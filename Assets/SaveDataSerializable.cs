@@ -10,9 +10,6 @@ public class SaveDataSerializable
 
     public string currentSlotInfo;
 
-    public float currentMasterVol, currentMusicVol, currentSoundVol;
-
-    public float currentMasterSlider, currentMusicSlider, currentSoundSlider;
     public float currentMouseSens;
 
     public string currentLanguage;
@@ -24,11 +21,6 @@ public class SaveDataSerializable
         saveDataName = saveData.saveDataName;
         currentLevel = saveData.currentLevel;
         currentSlotInfo = saveData.currentSlotInfo;
-        currentMasterVol = saveData.currentMasterVol;
-        currentMusicVol = saveData.currentMusicVol;
-        currentMasterSlider = saveData.currentMasterSlider;
-        currentMusicSlider = saveData.currentMusicSlider;
-        currentSoundSlider = saveData.currentSoundSlider;
         currentMouseSens = saveData.currentMouseSens;
         currentLanguage = saveData.currentLanguage;
         GameBeat = saveData.GameBeat;
@@ -38,11 +30,6 @@ public class SaveDataSerializable
         saveData.saveDataName = saveDataName;
         saveData.currentLevel = currentLevel;
         saveData.currentSlotInfo = currentSlotInfo;
-        saveData.currentMasterVol = currentMasterVol;
-        saveData.currentMusicVol = currentMusicVol;
-        saveData.currentMasterSlider = currentMasterSlider;
-        saveData.currentMusicSlider = currentMusicSlider;
-        saveData.currentSoundSlider = currentSoundSlider;
         saveData.currentMouseSens = currentMouseSens;
         saveData.currentLanguage = currentLanguage;
         saveData.GameBeat = GameBeat;

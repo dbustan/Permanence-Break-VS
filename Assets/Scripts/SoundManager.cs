@@ -153,6 +153,13 @@ public class SoundManager : MonoBehaviour
         return musicVol;
     }
 
+    public float GetOriginalMusicVol(){
+        return originalMusicVol;
+    }
+
+    public float GetOriginalSoundVol(){
+        return originalSoundVol;
+    }
     public float GetMusicSliderVal()
     {
         return musicSliderVal;
@@ -167,4 +174,27 @@ public class SoundManager : MonoBehaviour
     {
         return soundSliderVal;
     }
+
+    public void SetOriginalMusic(float val){
+        originalMusicVol = val;
+    }
+
+    public void SetOriginalSound(float val){
+        originalSoundVol = val;
+    }
+
+    public void SetSoundSliderVal(float val){
+        soundSliderVal = val;
+    }
+
+    public void SetMasterSliderVal(float val){
+
+    }
+
+    public void SetMusicSliderVal(float val){
+
+    }
+
+
+
 }

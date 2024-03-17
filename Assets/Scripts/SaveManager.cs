@@ -66,7 +66,6 @@ public class SaveManager : MonoBehaviour
         SaveData[] saveDatas = {saveData1,saveData2, saveData3};
         for (int i = 0; i < 3; i++){
             string saveSlotPath = Path.Combine(path, saveDatas[i].saveDataName + ".json");
-            Debug.Log(path);
             if (!File.Exists(saveSlotPath)){
                 Debug.Log("No File exists for " + saveSlotPath);
             } else {
@@ -75,11 +74,22 @@ public class SaveManager : MonoBehaviour
                 saveDataSerializable.SetSaveData(saveDatas[i]);
                   
             }
-            //string json = File.ReadAllText(saveSlotPath);
-            //SaveData parsedSaveData = JsonUtility.FromJson<SaveData>(json);
-            //saveSlotSave.SetSaveData(parsedSaveData);
-            Debug.Log(saveDatas[i].saveDataName);
         }
+        string audioPath = Path.Combine(path, "audio" + ".json");
+        if (File.Exists(audioPath)){
+            string audioJson = File.ReadAllText(audioPath);
+            SoundValues soundVals = JsonUtility.FromJson<SoundValues>(audioJson);
+            sm.SetOriginalMusic(soundVals.originalMusicVol);
+            sm.SetOriginalSound(soundVals.originalSoundVol);
+            sm.ChangeMasterVol(soundVals.masterVol);
+            sm.ChangeMusicVol(soundVals.musicVol);
+            sm.ChangeSoundVol(soundVals.soundVol);
+            
+            
+
+        }
+        
+
         
         
         saveMenuUI.SetActive(false);
@@ -136,15 +146,35 @@ public class SaveManager : MonoBehaviour
 
     private void OnApplicationQuit() {
         Debug.Log(currentSaveData.saveDataName);
-        CreateJSON();
+        CreateSaveJSON();
+        CreateAudioJSON();
+        
     }
-    private void CreateJSON(){
+    private void CreateSaveJSON(){
        SaveDataSerializable saveDataSerializable = new SaveDataSerializable();
        saveDataSerializable.SetSerializableData(currentSaveData);
        string json = JsonUtility.ToJson(saveDataSerializable);
        string specificFilePath = Path.Combine(path, saveDataSerializable.saveDataName + ".json");
        File.WriteAllText(specificFilePath, json);
        Debug.Log("Creating Json...");
+    }
+
+    private void CreateAudioJSON(){
+        SoundValues soundValues = new SoundValues
+        {
+            masterVol = sm.GetMasterVol(),
+            musicVol = sm.GetMusicVol(),
+            soundVol = sm.GetSoundVol(),
+            masterSliderVal = sm.GetMasterSliderVal(),
+            musicSliderVal = sm.GetMusicSliderVal(),
+            soundSliderVal = sm.GetSoundSliderVal(),
+            originalMusicVol = sm.GetOriginalMusicVol(),
+            originalSoundVol = sm.GetOriginalSoundVol(),
+        };
+        
+        string json = JsonUtility.ToJson(soundValues);
+        string specificFilePath = Path.Combine(path, "audio" + ".json");
+        File.WriteAllText(specificFilePath, json);
     }
 
     //TO-DO
@@ -154,9 +184,26 @@ public class SaveManager : MonoBehaviour
 
 
 
+
+
     
  
 }
+
+
+[System.Serializable]
+    public class SoundValues
+    {
+        public float masterVol;
+        public float musicVol;
+        public float soundVol;
+        public float masterSliderVal;
+        public float musicSliderVal;
+        public float soundSliderVal;
+        public float originalMusicVol;
+        public float originalSoundVol;
+    }
+
 
 
 
