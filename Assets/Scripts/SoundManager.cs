@@ -50,12 +50,15 @@ public class SoundManager : MonoBehaviour
     {
         if (type == "Sound")
         {
-            soundSource.volume = soundVol * valueToScale;
+            soundSource.volume = soundVol * masterVol * valueToScale;
             soundSource.Play();
         }
         else if (type == "Music")
         {
-            soundSource.volume = musicVol * valueToScale;
+
+            soundSource.volume = originalMusicVol * musicSliderVal * masterVol * valueToScale;
+
+            
             soundSource.Play();
             
         }
@@ -102,6 +105,7 @@ public class SoundManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         PlayBackgroundMusic();
+        
     }
 
 
@@ -110,6 +114,8 @@ public class SoundManager : MonoBehaviour
     {
         backgroundMusicGameObj = GameObject.Find("BackgroundMusic");
         backgroundMusic = backgroundMusicGameObj.GetComponent<AudioSource>();
+        
+        backgroundMusic.volume = musicVol;
         playAudio(backgroundMusic, "Music");
     }
 
@@ -118,7 +124,15 @@ public class SoundManager : MonoBehaviour
         masterSliderVal = sliderVal;
         masterVol = sliderVal;
         musicVol = originalMusicVol * masterVol;
+        backgroundMusic.volume = musicVol;
+        soundVol = originalSoundVol * masterVol;
 
+    }
+
+     public void ChangeMasterVol(double audioVal)
+    {
+        masterVol = (float)audioVal;
+        musicVol = originalMusicVol * masterVol;
         backgroundMusic.volume = musicVol;
         soundVol = originalSoundVol * masterVol;
 
@@ -127,17 +141,30 @@ public class SoundManager : MonoBehaviour
     public void ChangeMusicVol(float sliderVal)
     {
         musicSliderVal = sliderVal;
-        musicVol = sliderVal * masterVol;
-        originalMusicVol = musicVol;
+        musicVol = originalMusicVol * musicSliderVal * masterVol;
+        //originalMusicVol = musicVol;
+        backgroundMusic.volume = musicVol;
+    }
+
+    public void ChangeMusicVol(double audioVal)
+    {
+        musicVol = (float)audioVal * originalMusicVol  * masterVol;
+        //originalMusicVol = musicVol;
         backgroundMusic.volume = musicVol;
     }
 
     public void ChangeSoundVol(float sliderVal)
     {
         soundSliderVal = sliderVal;
-        soundVol = sliderVal * soundVol;
+        soundVol = sliderVal * originalSoundVol;
         originalSoundVol = soundVol;
         soundVol = sliderVal;
+
+    }
+
+    public void ChangeSoundVol(double audioVal)
+    {
+        soundVol = (float)audioVal * originalSoundVol  * masterVol;
 
     }
 
@@ -194,7 +221,6 @@ public class SoundManager : MonoBehaviour
     public void SetMusicSliderVal(float val){
 
     }
-
 
 
 }

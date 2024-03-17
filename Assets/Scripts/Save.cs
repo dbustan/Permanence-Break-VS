@@ -28,7 +28,12 @@ public class Save : MonoBehaviour
    }
    public void OnClick(){
       save = saveManager.SetCurrentGameSlot(gameObject.name);
-      SceneManager.LoadScene(save.currentLevel);
+      if (save.GameBeat){
+         menuManager.OpenLevelSelect();
+      } else {
+         SceneManager.LoadScene(save.currentLevel);
+      }
+      
        
    }
 

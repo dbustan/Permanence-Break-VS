@@ -106,6 +106,8 @@ public class MenuScript : MonoBehaviour
         currentScreen = creditsScreen;
     }
 
+  
+
     public void OpenMainMenu()
     {
         currentScreen.SetActive(false);
@@ -118,12 +120,18 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
-    public void LoadLevel()
+    public void LoadLevel1()
     {
-        currentScreen.SetActive(false);
-        mainMenuScreen.SetActive(true);
-        currentScreen = mainMenuScreen;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+    }
+
+     public void LoadLevel2()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level2");
+    }
+
+    public void LoadLevel3(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level3");
     }
 
     public void onButtonHover()
