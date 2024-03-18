@@ -1535,18 +1535,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594215041}
   m_CullTransparentMesh: 1
---- !u!114 &640926008 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
-    type: 3}
-  m_PrefabInstance: {fileID: 1214327163}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &677568646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1110871479112907905, guid: c29be8486aa85f843b2b6e516ef72825,
@@ -2368,7 +2356,6 @@ MonoBehaviour:
   masterVol: {fileID: 1686932608}
   musicVol: {fileID: 57094956}
   soundVol: {fileID: 79135120}
-  sensSlider: {fileID: 640926008}
 --- !u!1 &1143041763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6306631716683346018, guid: c29be8486aa85f843b2b6e516ef72825,
@@ -3431,6 +3418,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4596297266366596421, guid: c29be8486aa85f843b2b6e516ef72825,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4680767103210053003, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_Name
@@ -3848,6 +3840,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -107.9749
       objectReference: {fileID: 0}
+    - target: {fileID: 7778045633927201447, guid: c29be8486aa85f843b2b6e516ef72825,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7892485162686752062, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_fontColor.b
@@ -3958,6 +3955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Save2Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 8494148552391463428, guid: c29be8486aa85f843b2b6e516ef72825,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8792930843267450885, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
@@ -6371,6 +6373,7 @@ MonoBehaviour:
   mainMenuMusicSlider: {fileID: 57094956}
   mainMenuMasterSlider: {fileID: 1686932608}
   mainMenuSoundSlider: {fileID: 79135120}
+  currentSaveData: {fileID: 0}
 --- !u!4 &2136603879
 Transform:
   m_ObjectHideFlags: 0

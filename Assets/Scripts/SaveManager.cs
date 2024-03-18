@@ -46,6 +46,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField]
     private Slider mainMenuMusicSlider, mainMenuMasterSlider, mainMenuSoundSlider;
 
+    [SerializeField]
     SaveData currentSaveData;
 
     private string path;
@@ -137,6 +138,7 @@ public class SaveManager : MonoBehaviour
         else if (scene.name == "Credits")
         {
              Debug.Log("we did it joe!");
+            UpdateSaveFile(currentSaveData, scene.name);
             currentSaveData.currentLevel = "none";
             currentSaveData.currentSlotInfo = "Level Select Mode!";
             currentSaveData.GameBeat = true;
@@ -145,25 +147,27 @@ public class SaveManager : MonoBehaviour
 
     private void UpdateSaveFile(SaveData currentSave, string sceneName)
     {
+        
         currentSave.currentLevel = sceneName;
         currentSave.currentSlotInfo = sceneName;
         Debug.Log("Saving! " + currentSave.saveDataName);
-        Debug.Log(Application.persistentDataPath);
     }
 
 
     public SaveData SetCurrentGameSlot(string SaveSlot)
     {
         SaveData[] saveDatas = { saveData1, saveData2, saveData3 };
+        Debug.Log(SaveSlot);
         for (int i = 0; i < 3; i++)
         {
             if (SaveSlot == saveDatas[i].saveDataName)
             {
                 currentSaveData = saveDatas[i];
+                Debug.Log(currentSaveData.saveDataName + " Locked in!");
                 break;
             }
         }
-        Debug.Log(currentSaveData.saveDataName + " Locked in!");
+        
         return currentSaveData;
     }
 
