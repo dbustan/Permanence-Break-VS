@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Assets.SimpleLocalization.Scripts;
 using Unity.Collections;
 using Unity.VisualScripting;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //Class handles all data that needs to be stored.
 public class SaveManager : MonoBehaviour
@@ -18,26 +20,51 @@ public class SaveManager : MonoBehaviour
     [SerializeField]
 
     private GameObject saveMenuUI;
+
+
+
+
+
+    [SerializeField]
+    private GameObject optionsMenuUI;
     private SoundManager sm;
 
     [SerializeField]
     private GameObject saveSlot1, saveSlot2, saveSlot3;
     private SaveData saveData1, saveData2, saveData3;
 
+
+    private bool inChinese, grayScale;
+
+
+
+
+
+
+
+    [SerializeField]
+    private Slider mainMenuMusicSlider, mainMenuMasterSlider, mainMenuSoundSlider;
+
     SaveData currentSaveData;
-
-
-
-    Save currentSaveSlot;
 
     private string path;
 
-
+    public static SaveManager instance;
 
 
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
         saveMenuUI.SetActive(true);
+        inChinese = false;
         GenerateBlankSaves();
         sm = soundManagerObj.GetComponent<SoundManager>();
         DontDestroyOnLoad(gameObject);
@@ -81,6 +108,7 @@ public class SaveManager : MonoBehaviour
 
             }
         }
+<<<<<<< HEAD
         string audioPath = Path.Combine(path, "audio" + ".json");
         if (File.Exists(audioPath))
         {
@@ -99,6 +127,13 @@ public class SaveManager : MonoBehaviour
 
 
 
+=======
+        // string settingsPath = Path.Combine(path, "settings" + ".json");
+        // if (File.Exists(settingsPath)){
+        //     string json = File.ReadAllText(settingsPath);
+        //     SettingsValues SettingsValues = JsonUtility.FromJson<SettingsValues>(json);
+        // }
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
         saveMenuUI.SetActive(false);
 
 
@@ -108,6 +143,7 @@ public class SaveManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+<<<<<<< HEAD
 
         if (scene.name != "MainMenu" && !currentSaveData.GameBeat)
         {
@@ -116,15 +152,15 @@ public class SaveManager : MonoBehaviour
         }
         else if (scene.name == "Credits")
         {
+=======
+       
+        if (scene.name != "MainMenu" && !currentSaveData.GameBeat){
+            UpdateSaveFile(currentSaveData, scene.name, sm);   
+        } else if (scene.name == "Credits"){
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
             currentSaveData.currentLevel = null;
             currentSaveData.currentSlotInfo = "Level Select Mode!";
             currentSaveData.GameBeat = true;
-            currentSaveData.currentMasterVol = sm.GetMasterVol();
-            currentSaveData.currentMusicVol = sm.GetMusicVol();
-            currentSaveData.currentSoundVol = sm.GetSoundVol();
-            currentSaveData.currentMusicSlider = sm.GetMusicSliderVal();
-            currentSaveData.currentMasterSlider = sm.GetMasterSliderVal();
-            currentSaveData.currentSoundSlider = sm.GetSoundSliderVal();
         }
     }
 
@@ -132,6 +168,7 @@ public class SaveManager : MonoBehaviour
     {
         currentSave.currentLevel = sceneName;
         currentSave.currentSlotInfo = sceneName;
+<<<<<<< HEAD
 
         currentSave.currentMasterVol = sm.GetMasterVol();
         currentSave.currentMusicVol = sm.GetMusicVol();
@@ -139,6 +176,8 @@ public class SaveManager : MonoBehaviour
         currentSave.currentMusicSlider = sm.GetMusicSliderVal();
         currentSave.currentMasterSlider = sm.GetMasterSliderVal();
         currentSave.currentSoundSlider = sm.GetSoundSliderVal();
+=======
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
         Debug.Log("Saving! " + currentSave.saveDataName);
     }
 
@@ -158,12 +197,22 @@ public class SaveManager : MonoBehaviour
         return currentSaveData;
     }
 
+<<<<<<< HEAD
     private void OnApplicationQuit()
     {
         Debug.Log(currentSaveData.saveDataName);
         CreateSaveJSON();
         CreateAudioJSON();
 
+=======
+    private void OnApplicationQuit() {
+        if (currentSaveData != null){
+            CreateSaveJSON();
+        }
+        
+        //CreateSettingsJSON();
+        
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
     }
     private void CreateSaveJSON()
     {
@@ -175,20 +224,20 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Creating Json...");
     }
 
+<<<<<<< HEAD
     private void CreateAudioJSON()
     {
         SoundValues soundValues = new SoundValues
+=======
+    private void CreateSettingsJSON(){
+        SettingsValues settingsValues = new SettingsValues
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
         {
-            masterVol = sm.GetMasterVol(),
-            musicVol = sm.GetMusicVol(),
-            soundVol = sm.GetSoundVol(),
-            masterSliderVal = sm.GetMasterSliderVal(),
-            musicSliderVal = sm.GetMusicSliderVal(),
-            soundSliderVal = sm.GetSoundSliderVal(),
-            originalMusicVol = sm.GetOriginalMusicVol(),
-            originalSoundVol = sm.GetOriginalSoundVol(),
+            chinese = inChinese,
+
         };
 
+<<<<<<< HEAD
         string json = JsonUtility.ToJson(soundValues);
         string specificFilePath = Path.Combine(path, "audio" + ".json");
         File.WriteAllText(specificFilePath, json);
@@ -198,18 +247,44 @@ public class SaveManager : MonoBehaviour
     public void SetCurrentLanguage()
     {
 
+=======
+        
+        string json = JsonUtility.ToJson(settingsValues);
+        string specificFilePath = Path.Combine(path, "settings" + ".json");
+        File.WriteAllText(specificFilePath, json);
     }
 
+    public void InChinese(){
+        inChinese = true;
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
+    }
+
+    public void InEnglish()
+    {
+        inChinese = false;
+    }
+
+<<<<<<< HEAD
 
 
 
 
 
-
+=======
+    public void ToggleGrayscale(){
+        grayScale = !grayScale;
+    }
+    public SaveData GetCurrentSaveData(){
+        return currentSaveData;
+    }
+    
+ 
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
 }
 
 
 [System.Serializable]
+<<<<<<< HEAD
 public class SoundValues
 {
     public float masterVol;
@@ -222,8 +297,30 @@ public class SoundValues
     public float originalSoundVol;
 }
 
+=======
+    public class SettingsValues
+    {
+        // public double masterVol;
+        // public double musicVol;
+        // public double soundVol;
+        // public float masterSliderVal;
+        // public float musicSliderVal;
+        // public float soundSliderVal;
+        // public float originalMusicVol;
+        // public float originalSoundVol;
+
+        public bool chinese;
+
+       
+    }
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
 
 
 
 
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> bd86907042382c797562fc438c61e86bd73c6e78
 

@@ -25,6 +25,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
     public float verticalRange;
     private Camera playerCamera;
     public Slider sensitivitySlider;
+
+
     
     // MOVEMENT
     [Header("Movment")]
@@ -53,6 +55,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
         new Vector3(0, -1, -1).normalized,
     };
 
+    
     // USER INPUT
     private bool moveFlag, jumpFlag;
 
@@ -71,6 +74,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
         moveFlag = jumpFlag = false;
         startingPosition = transform.position;
+      
         cameraSensitivity = DEFAULT_SENSITIVITY;
         sensitivitySlider.value = DEFAULT_SENSITIVITY;
     }

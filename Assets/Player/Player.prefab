@@ -1614,6 +1614,8 @@ MonoBehaviour:
   cameraSensitivity: 250
   verticalRange: 160
   sensitivitySlider: {fileID: 1034586750447398515}
+  PauseMenu: {fileID: 8990691221337343115}
+  Config: {fileID: 6609445311390075426}
   maxWalkingSpeed: 7.5
   walkingAcceleration: 30
   walkingDeceleration: 30
@@ -1633,6 +1635,7 @@ MonoBehaviour:
   grounded: 0
   jumping: 0
   wasStep: 0
+  config: {fileID: 7528195696044500185}
 --- !u!114 &4569583195303055829
 MonoBehaviour:
   m_ObjectHideFlags: 0
