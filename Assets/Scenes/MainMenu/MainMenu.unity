@@ -836,7 +836,7 @@ MonoBehaviour:
   textMeshProObjects: []
   textMeshProUiObjects:
   - {fileID: 1300226991}
-  - {fileID: 0}
+  - {fileID: 594215044}
   - {fileID: 891836291}
   - {fileID: 1511043632}
   - {fileID: 135201939}
