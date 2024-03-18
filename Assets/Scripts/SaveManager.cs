@@ -5,7 +5,7 @@ using System.IO;
 using Assets.SimpleLocalization.Scripts;
 using Unity.Collections;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,7 +13,7 @@ using UnityEngine.UI;
 //Class handles all data that needs to be stored.
 public class SaveManager : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
 
     private GameObject soundManagerObj;
 
@@ -22,14 +22,14 @@ public class SaveManager : MonoBehaviour
     private GameObject saveMenuUI;
 
 
-  
-    
+
+
 
     [SerializeField]
     private GameObject optionsMenuUI;
     private SoundManager sm;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject saveSlot1, saveSlot2, saveSlot3;
     private SaveData saveData1, saveData2, saveData3;
 
@@ -49,15 +49,18 @@ public class SaveManager : MonoBehaviour
 
     private string path;
 
-   public static SaveManager instance; 
+    public static SaveManager instance;
 
 
     void Start()
     {
-        if (instance == null){
+        if (instance == null)
+        {
             instance = this;
-             DontDestroyOnLoad(this.gameObject);
-        } else {
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
             Destroy(this.gameObject);
         }
         saveMenuUI.SetActive(true);
@@ -68,11 +71,12 @@ public class SaveManager : MonoBehaviour
         path = Application.persistentDataPath;
         CheckData(path);
         SceneManager.sceneLoaded += OnSceneLoaded;
-           
+
     }
 
 
-    private void GenerateBlankSaves(){
+    private void GenerateBlankSaves()
+    {
         saveData1 = SaveData.CreateInstance<SaveData>();
         saveData1.saveDataName = "Save1";
         saveData1.currentLevel = "Level1";
@@ -84,56 +88,83 @@ public class SaveManager : MonoBehaviour
         saveData3.currentLevel = "Level1";
     }
     //Each Slot will have its saveslot updated here
-    private void CheckData(string path){
-        
-        GameObject[] saveSlots = {saveSlot1, saveSlot2, saveSlot3};
-        SaveData[] saveDatas = {saveData1,saveData2, saveData3};
-        for (int i = 0; i < 3; i++){
+    private void CheckData(string path)
+    {
+
+        GameObject[] saveSlots = { saveSlot1, saveSlot2, saveSlot3 };
+        SaveData[] saveDatas = { saveData1, saveData2, saveData3 };
+        for (int i = 0; i < 3; i++)
+        {
             string saveSlotPath = Path.Combine(path, saveDatas[i].saveDataName + ".json");
-            if (!File.Exists(saveSlotPath)){
+            if (!File.Exists(saveSlotPath))
+            {
                 Debug.Log("No File exists for " + saveSlotPath);
-            } else {
+            }
+            else
+            {
                 string json = File.ReadAllText(saveSlotPath);
                 SaveDataSerializable saveDataSerializable = JsonUtility.FromJson<SaveDataSerializable>(json);
                 saveDataSerializable.SetSaveData(saveDatas[i]);
-                  
+
             }
         }
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+>>>>>>> Stashed changes
         // string settingsPath = Path.Combine(path, "settings" + ".json");
         // if (File.Exists(settingsPath)){
         //     string json = File.ReadAllText(settingsPath);
         //     SettingsValues SettingsValues = JsonUtility.FromJson<SettingsValues>(json);
         // }
         saveMenuUI.SetActive(false);
-            
-            
-        
+
+
+
     }
 
 
-     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+<<<<<<< Updated upstream
        
         if (scene.name != "MainMenu" && !currentSaveData.GameBeat){
             UpdateSaveFile(currentSaveData, scene.name, sm);   
         } else if (scene.name == "Credits"){
+=======
+
+        if (scene.name != "MainMenu" && !currentSaveData.GameBeat)
+        {
+            UpdateSaveFile(currentSaveData, scene.name, sm);
+        }
+        else if (scene.name == "Credits")
+        {
+>>>>>>> Stashed changes
             currentSaveData.currentLevel = null;
             currentSaveData.currentSlotInfo = "Level Select Mode!";
             currentSaveData.GameBeat = true;
         }
     }
 
-    private void UpdateSaveFile(SaveData currentSave, string sceneName, SoundManager sm){
+    private void UpdateSaveFile(SaveData currentSave, string sceneName, SoundManager sm)
+    {
         currentSave.currentLevel = sceneName;
         currentSave.currentSlotInfo = sceneName;
         Debug.Log("Saving! " + currentSave.saveDataName);
     }
-  
 
-    public SaveData SetCurrentGameSlot(string SaveSlot) {
-        SaveData[] saveDatas = {saveData1,saveData2, saveData3};
-        for (int i = 0; i < 3; i++){
-            if (SaveSlot == saveDatas[i].saveDataName){
+
+    public SaveData SetCurrentGameSlot(string SaveSlot)
+    {
+        SaveData[] saveDatas = { saveData1, saveData2, saveData3 };
+        for (int i = 0; i < 3; i++)
+        {
+            if (SaveSlot == saveDatas[i].saveDataName)
+            {
                 currentSaveData = saveDatas[i];
                 break;
             }
@@ -142,56 +173,91 @@ public class SaveManager : MonoBehaviour
         return currentSaveData;
     }
 
+<<<<<<< Updated upstream
     private void OnApplicationQuit() {
         if (currentSaveData != null){
+=======
+    private void OnApplicationQuit()
+    {
+        if (currentSaveData != null)
+        {
+>>>>>>> Stashed changes
             CreateSaveJSON();
         }
-        
+
         //CreateSettingsJSON();
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
     }
-    private void CreateSaveJSON(){
-       SaveDataSerializable saveDataSerializable = new SaveDataSerializable();
-       saveDataSerializable.SetSerializableData(currentSaveData);
-       string json = JsonUtility.ToJson(saveDataSerializable);
-       string specificFilePath = Path.Combine(path, saveDataSerializable.saveDataName + ".json");
-       File.WriteAllText(specificFilePath, json);
-       Debug.Log("Creating Json...");
+    private void CreateSaveJSON()
+    {
+        SaveDataSerializable saveDataSerializable = new SaveDataSerializable();
+        saveDataSerializable.SetSerializableData(currentSaveData);
+        string json = JsonUtility.ToJson(saveDataSerializable);
+        string specificFilePath = Path.Combine(path, saveDataSerializable.saveDataName + ".json");
+        File.WriteAllText(specificFilePath, json);
+        Debug.Log("Creating Json...");
     }
 
+<<<<<<< Updated upstream
     private void CreateSettingsJSON(){
+=======
+    private void CreateSettingsJSON()
+    {
+>>>>>>> Stashed changes
         SettingsValues settingsValues = new SettingsValues
         {
             chinese = inChinese,
 
         };
 
+<<<<<<< Updated upstream
         
+=======
+
+>>>>>>> Stashed changes
         string json = JsonUtility.ToJson(settingsValues);
         string specificFilePath = Path.Combine(path, "settings" + ".json");
         File.WriteAllText(specificFilePath, json);
     }
 
-    public void InChinese(){
+    public void InChinese()
+    {
         inChinese = true;
     }
 
-    public void InEnglish(){
+    public void InEnglish()
+    {
         inChinese = false;
     }
 
+<<<<<<< Updated upstream
     public void ToggleGrayscale(){
+=======
+    public void ToggleGrayscale()
+    {
+>>>>>>> Stashed changes
         grayScale = !grayScale;
     }
-    public SaveData GetCurrentSaveData(){
+    public SaveData GetCurrentSaveData()
+    {
         return currentSaveData;
     }
+<<<<<<< Updated upstream
     
  
+=======
+
+
+>>>>>>> Stashed changes
 }
 
 
 [System.Serializable]
+<<<<<<< Updated upstream
     public class SettingsValues
     {
         // public double masterVol;
@@ -214,3 +280,23 @@ public class SaveManager : MonoBehaviour
 
     
 
+=======
+public class SettingsValues
+{
+    // public double masterVol;
+    // public double musicVol;
+    // public double soundVol;
+    // public float masterSliderVal;
+    // public float musicSliderVal;
+    // public float soundSliderVal;
+    // public float originalMusicVol;
+    // public float originalSoundVol;
+
+    public bool chinese;
+
+
+}
+
+
+
+>>>>>>> Stashed changes

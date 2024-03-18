@@ -836,7 +836,7 @@ MonoBehaviour:
   textMeshProObjects: []
   textMeshProUiObjects:
   - {fileID: 1300226991}
-  - {fileID: 0}
+  - {fileID: 594215044}
   - {fileID: 891836291}
   - {fileID: 1511043632}
   - {fileID: 135201939}
@@ -1535,6 +1535,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594215041}
   m_CullTransparentMesh: 1
+--- !u!114 &640926008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
+    type: 3}
+  m_PrefabInstance: {fileID: 1214327163}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &677568646 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1110871479112907905, guid: c29be8486aa85f843b2b6e516ef72825,
@@ -2356,6 +2368,7 @@ MonoBehaviour:
   masterVol: {fileID: 1686932608}
   musicVol: {fileID: 57094956}
   soundVol: {fileID: 79135120}
+  sensSlider: {fileID: 640926008}
 --- !u!1 &1143041763 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6306631716683346018, guid: c29be8486aa85f843b2b6e516ef72825,
@@ -3498,17 +3511,17 @@ PrefabInstance:
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_Value
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_MaxValue
-      value: 300
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
@@ -3519,7 +3532,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1046052759}
+      objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3528,12 +3541,12 @@ PrefabInstance:
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeSensVal
+      value: updateSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Config, Assembly-CSharp
+      value: PlayerControllerPhysics, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5581745608149517420, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
