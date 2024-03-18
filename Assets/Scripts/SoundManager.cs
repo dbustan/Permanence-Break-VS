@@ -46,6 +46,12 @@ public class SoundManager : MonoBehaviour
        
     }
 
+    private void Update(){
+        ChangeMasterVol(masterSliderVal);
+        ChangeMusicVol(musicSliderVal);
+        ChangeSoundVol(soundSliderVal);
+    }
+
     public void playAudio(AudioSource soundSource, string type, float valueToScale = 1)
     {
         if (type == "Sound")
@@ -57,9 +63,9 @@ public class SoundManager : MonoBehaviour
         {
 
             soundSource.volume = originalMusicVol * musicSliderVal * masterVol * valueToScale;
-
             
-            soundSource.Play();
+            soundSource.Play(); 
+            Debug.Log(soundSource.volume);
             
         }
         else
@@ -115,7 +121,6 @@ public class SoundManager : MonoBehaviour
         backgroundMusicGameObj = GameObject.Find("BackgroundMusic");
         backgroundMusic = backgroundMusicGameObj.GetComponent<AudioSource>();
         
-        backgroundMusic.volume = musicVol;
         playAudio(backgroundMusic, "Music");
     }
 
