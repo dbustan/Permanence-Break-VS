@@ -4890,8 +4890,7 @@ Transform:
   m_LocalPosition: {x: -3.86, y: 1.5169, z: 35.1277}
   m_LocalScale: {x: 0.32366094, y: 1, z: 0.31973448}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 121597093}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &775447777 stripped
@@ -8337,7 +8336,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 449446371}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: -90, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12771,7 +12770,7 @@ MonoBehaviour:
   - {fileID: 822328644}
   - {fileID: 1976444189}
   - {fileID: 1338187390}
-  - {fileID: 1015663781}
+  - {fileID: 0}
   - {fileID: 1929533039}
   - {fileID: 1606653262}
   ControlsGraphic: {fileID: 1267689429}
@@ -12800,6 +12799,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 425505005224736717, guid: 8546243e06b58674fa1431c8de47cc3c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 692bf093bc191c548afede19496dd480,
+        type: 3}
     - target: {fileID: 693648733487966346, guid: 8546243e06b58674fa1431c8de47cc3c,
         type: 3}
       propertyPath: m_IsActive
@@ -13079,3 +13084,5 @@ SceneRoots:
   - {fileID: 405521767}
   - {fileID: 959392285}
   - {fileID: 2145740176}
+  - {fileID: 717777424}
+  - {fileID: 1265890519}
