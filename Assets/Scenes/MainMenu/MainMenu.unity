@@ -3132,7 +3132,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1106577557
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4909,7 +4909,7 @@ PrefabInstance:
     - target: {fileID: 8494148552391463428, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -197.26
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8792930843267450885, guid: c29be8486aa85f843b2b6e516ef72825,
         type: 3}
@@ -7623,8 +7623,6 @@ MonoBehaviour:
   saveMenuUI: {fileID: 39091755}
   optionsMenuUI: {fileID: 1046052754}
   saveSlot1: {fileID: 1214327166}
-  saveSlot2: {fileID: 1214327165}
-  saveSlot3: {fileID: 1214327164}
   mainMenuMusicSlider: {fileID: 57094956}
   mainMenuMasterSlider: {fileID: 1686932608}
   mainMenuSoundSlider: {fileID: 79135120}
