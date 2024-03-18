@@ -13,7 +13,8 @@ public class SoundManager : MonoBehaviour
     //NOTE: Value of scale refers to if the sound source has a predetermined volume and you want it to continue to abide to that
     private float musicVol, soundVol, masterVol;
 
-    private float musicSliderVal, soundSliderVal, masterSliderVal;
+    private float musicSliderVal, soundSliderVal, masterSliderVal, sensSliderVal;
+    const float DEFAULT_SENSITIVITY = 100f;
     private GameObject backgroundMusicGameObj;
     private AudioSource backgroundMusic;
 
@@ -38,6 +39,8 @@ public class SoundManager : MonoBehaviour
         soundSliderVal = 1;
         originalMusicVol = 1;
         originalSoundVol = 1;
+
+        sensSliderVal = DEFAULT_SENSITIVITY;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
         PlayBackgroundMusic();
@@ -222,5 +225,11 @@ public class SoundManager : MonoBehaviour
 
     }
 
+    public void updateSens(float val) {
+        sensSliderVal = val;
+    }
 
+    public float getSens() {
+        return sensSliderVal;
+    }
 }

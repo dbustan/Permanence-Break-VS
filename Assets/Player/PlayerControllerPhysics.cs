@@ -20,7 +20,7 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
     // CAMERA CONTROL
     [Header("Camera Control")]
-    const float DEFAULT_SENSITIVITY = 100f;
+
     public float cameraSensitivity;
     public float verticalRange;
     private Camera playerCamera;
@@ -74,9 +74,8 @@ public class PlayerControllerPhysics : MonoBehaviour {
 
         moveFlag = jumpFlag = false;
         startingPosition = transform.position;
-      
-        cameraSensitivity = DEFAULT_SENSITIVITY;
-        sensitivitySlider.value = DEFAULT_SENSITIVITY;
+
+        cameraSensitivity = SoundManager.instance.getSens();
     }
 
     void Update() {
@@ -218,8 +217,12 @@ public class PlayerControllerPhysics : MonoBehaviour {
     }
 
     public void updateSensitivity(float newSens) {
-        Debug.Log(newSens);
         cameraSensitivity = newSens;
+        SoundManager.instance.updateSens(newSens);
+    }
+
+    public void updateSensitivitySlider(float newSens) {
+        sensitivitySlider.value = newSens;
     }
 
     public void setMovementEnabled(bool enabled) {

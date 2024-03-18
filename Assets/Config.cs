@@ -8,9 +8,10 @@ using UnityEngine.UI;
 public class Config : MonoBehaviour
 {
 
-        [SerializeField] private Slider masterVol, musicVol, soundVol;
+        [SerializeField] private Slider masterVol, musicVol, soundVol, sensSlider;
         private GameObject soundManagerObj;
-        
+        private GameObject player;
+        private PlayerControllerPhysics playerController;
         private float currentSens;
         private SoundManager sm;
         private void Start() {
@@ -23,15 +24,21 @@ public class Config : MonoBehaviour
             masterVol.onValueChanged.AddListener(sm.ChangeMasterVol);
             musicVol.onValueChanged.AddListener(sm.ChangeMusicVol);
             soundVol.onValueChanged.AddListener(sm.ChangeSoundVol);
+
+            player = GameObject.Find("Player");
+            currentSens = sm.getSens();
+            if (player) {
+                playerController = player.GetComponent<PlayerControllerPhysics>();
+                playerController.updateSensitivitySlider(currentSens);
+                playerController.updateSensitivity(currentSens);
+            } else {
+                sensSlider.value = currentSens;
+                sensSlider.onValueChanged.AddListener(updateCurrSens);
+            }
         }
 
-
-    public void ChangeSensVal(float val){
-        currentSens = val;
-    }
-
-    public float GetSensVal(){
-        return currentSens;
-    }
-    
+        public void updateCurrSens(float val) {
+            currentSens = val;
+            sm.updateSens(val);
+        }
 }
