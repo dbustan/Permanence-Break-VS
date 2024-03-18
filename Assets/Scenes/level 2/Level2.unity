@@ -379,12 +379,12 @@ PrefabInstance:
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.399
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.647
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
@@ -410,6 +410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.685
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
@@ -5256,12 +5261,12 @@ PrefabInstance:
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
@@ -5287,6 +5292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.791
       objectReference: {fileID: 0}
     - target: {fileID: 9041359430219988634, guid: 3c934a12972de981c895d612225fc955,
         type: 3}
@@ -10068,18 +10078,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3352
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.8387
+      objectReference: {fileID: 0}
+    - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.787
+      value: 3.89
       objectReference: {fileID: 0}
     - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.466
+      value: 0.019
       objectReference: {fileID: 0}
     - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.306
+      value: 14.88
       objectReference: {fileID: 0}
     - target: {fileID: 3304810243564544875, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
         type: 3}
@@ -10121,6 +10141,21 @@ PrefabInstance:
       propertyPath: buttonTriggerObj
       value: 
       objectReference: {fileID: 1473107405}
+    - target: {fileID: 7754078367353339686, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754078367353339686, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754078367353339686, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.54
+      objectReference: {fileID: 0}
     - target: {fileID: 8837906617303109945, guid: bd06d0cc8c2d7d86b8ef6ac7496b1add,
         type: 3}
       propertyPath: buttonTriggerObj

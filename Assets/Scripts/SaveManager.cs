@@ -113,6 +113,11 @@ public class SaveManager : MonoBehaviour
 
 
 
+
+
+
+
+
         // string settingsPath = Path.Combine(path, "settings" + ".json");
         // if (File.Exists(settingsPath)){
         //     string json = File.ReadAllText(settingsPath);
