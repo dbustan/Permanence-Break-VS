@@ -122,9 +122,11 @@ public class SoundManager : MonoBehaviour
     private void PlayBackgroundMusic()
     {
         backgroundMusicGameObj = GameObject.Find("BackgroundMusic");
-        backgroundMusic = backgroundMusicGameObj.GetComponent<AudioSource>();
+        if(backgroundMusicGameObj != null){
+            backgroundMusic = backgroundMusicGameObj.GetComponent<AudioSource>();
+            playAudio(backgroundMusic, "Music");
+        }
         
-        playAudio(backgroundMusic, "Music");
     }
 
     public void ChangeMasterVol(float sliderVal)
@@ -132,7 +134,10 @@ public class SoundManager : MonoBehaviour
         masterSliderVal = sliderVal;
         masterVol = sliderVal;
         musicVol = originalMusicVol * masterVol;
-        backgroundMusic.volume = musicVol;
+        if (backgroundMusic != null){
+            backgroundMusic.volume = musicVol;
+        }
+        
         soundVol = originalSoundVol * masterVol;
 
     }
@@ -151,7 +156,10 @@ public class SoundManager : MonoBehaviour
         musicSliderVal = sliderVal;
         musicVol = originalMusicVol * musicSliderVal * masterVol;
         //originalMusicVol = musicVol;
-        backgroundMusic.volume = musicVol;
+        if (backgroundMusic != null){
+            backgroundMusic.volume = musicVol;
+        }
+        
     }
 
     public void ChangeMusicVol(double audioVal)
