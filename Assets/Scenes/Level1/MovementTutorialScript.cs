@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,77 +6,64 @@ using UnityEngine.UI;
 
 public class MovementTutorialScript : MonoBehaviour
 {
-    public Text text;
-    public Text look;
-    public Text move;
-    public Text scroll;
-    public Text backwards;
-    public PlayerControllerPhysics player;
-    float totalMouseMovement = 0;
+    public PlayerControllerPhysics playerController;
+    public float startDelay;
+    private DialogueBox dialogueBox;
+    private float startTime;
+    private int stage;
 
-    private string state;
-    private bool needLook, needMoveForward, needChangeSpeed, needMoveBackward, needJump;
 
-    void Start()
-    {
-        state = "look";
-        text.text = look.text;
-        player.setMovementEnabled(false);
-        needLook = needMoveForward = needChangeSpeed = needMoveBackward = needJump = true;
+    void Start() {
+        dialogueBox = playerController.GetComponentInChildren<DialogueBox>();
+        playerController.setMovementEnabled(false);
+        startTime = Time.time;
+        stage = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        totalMouseMovement += Mathf.Abs(Input.GetAxis("Mouse X")) + Mathf.Abs(Input.GetAxis("Mouse Y"));
-
-        if (needLook && totalMouseMovement > 100)
-        {
-            player.setMovementEnabled(true);
-            text.text = move.text;
-            needLook = false;
-            state = "move";
+        if(Time.time - startTime >= startDelay) {
+            dialogueBox.showDialogue("Look around using the mouse.");
+            playerController.lookThresholdReached += actionComplete;
+            startTime = float.MaxValue;
         }
-        else if (!needLook && needMoveForward && Input.GetMouseButtonDown(1))
-        {
-            needMoveForward = false;
-            text.text = scroll.text;
-            state = "scroll";
+        if(Input.GetKeyDown(KeyCode.D)) {
+            actionComplete(null, null);
         }
-        else if (!needMoveForward && needChangeSpeed && Mathf.Abs(Input.mouseScrollDelta.y) > 0)
-        {
-            needChangeSpeed = false;
-            text.text = backwards.text;
-            state = "backwards";
-        }
-        else if (!needChangeSpeed && needMoveBackward && Input.GetMouseButtonDown(1) && player.getCurrentWalkingSpeed() < 0)
-        {
-            needMoveBackward = false;
-            text.text = "";
-            state = "done";
-        }
-
     }
 
-    public void refreshText()
-    {
-        switch (state)
-        {
-            case "look":
-                text.text = look.text;
+    private void actionComplete(object sender, EventArgs e) {
+        switch(stage) {
+            case 0:
+                playerController.lookThresholdReached -= actionComplete;
+                playerController.moved += actionComplete;
+                playerController.setMovementEnabled(true);
+                dialogueBox.showDialogue("Move using the right mouse button.");
                 break;
-            case "move":
-                text.text = move.text;
+            case 1:
+                playerController.moved -= actionComplete;
+                playerController.changedSpeed += actionComplete;
+                dialogueBox.showDialogue("Change your speed using the scroll wheel.");
                 break;
-            case "scroll":
-                text.text = scroll.text;
+            case 2:
+                playerController.changedSpeed -= actionComplete;
+                playerController.walkedBackwards += actionComplete;
+                dialogueBox.showDialogue("Walk backwards by changing your speed.");
                 break;
-            case "backwards":
-                text.text = backwards.text;
+            case 3:
+                playerController.walkedBackwards -= actionComplete;
+                playerController.jumped += actionComplete;
+                dialogueBox.showDialogue("Jump using the middle mouse button.");
                 break;
+            case 4:
+                playerController.jumped -= actionComplete;
+                dialogueBox.hideDialogue();
+                return;
             default:
-                break;
+                dialogueBox.hideDialogue();
+                return;
         }
-
+        stage++;
     }
 }
