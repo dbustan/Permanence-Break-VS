@@ -108,14 +108,11 @@ public class SaveManager : MonoBehaviour
 
             }
         }
-<<<<<<< Updated upstream
-=======
 
 
 
 
 
->>>>>>> Stashed changes
         // string settingsPath = Path.Combine(path, "settings" + ".json");
         // if (File.Exists(settingsPath)){
         //     string json = File.ReadAllText(settingsPath);
@@ -130,12 +127,6 @@ public class SaveManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-<<<<<<< Updated upstream
-       
-        if (scene.name != "MainMenu" && !currentSaveData.GameBeat){
-            UpdateSaveFile(currentSaveData, scene.name, sm);   
-        } else if (scene.name == "Credits"){
-=======
 
         if (scene.name != "MainMenu" && !currentSaveData.GameBeat)
         {
@@ -143,7 +134,6 @@ public class SaveManager : MonoBehaviour
         }
         else if (scene.name == "Credits")
         {
->>>>>>> Stashed changes
             currentSaveData.currentLevel = null;
             currentSaveData.currentSlotInfo = "Level Select Mode!";
             currentSaveData.GameBeat = true;
@@ -173,24 +163,14 @@ public class SaveManager : MonoBehaviour
         return currentSaveData;
     }
 
-<<<<<<< Updated upstream
-    private void OnApplicationQuit() {
-        if (currentSaveData != null){
-=======
     private void OnApplicationQuit()
     {
         if (currentSaveData != null)
         {
->>>>>>> Stashed changes
             CreateSaveJSON();
         }
 
         //CreateSettingsJSON();
-<<<<<<< Updated upstream
-        
-=======
-
->>>>>>> Stashed changes
     }
     private void CreateSaveJSON()
     {
@@ -202,23 +182,14 @@ public class SaveManager : MonoBehaviour
         Debug.Log("Creating Json...");
     }
 
-<<<<<<< Updated upstream
-    private void CreateSettingsJSON(){
-=======
     private void CreateSettingsJSON()
     {
->>>>>>> Stashed changes
         SettingsValues settingsValues = new SettingsValues
         {
             chinese = inChinese,
 
         };
 
-<<<<<<< Updated upstream
-        
-=======
-
->>>>>>> Stashed changes
         string json = JsonUtility.ToJson(settingsValues);
         string specificFilePath = Path.Combine(path, "settings" + ".json");
         File.WriteAllText(specificFilePath, json);
@@ -234,53 +205,20 @@ public class SaveManager : MonoBehaviour
         inChinese = false;
     }
 
-<<<<<<< Updated upstream
-    public void ToggleGrayscale(){
-=======
     public void ToggleGrayscale()
     {
->>>>>>> Stashed changes
         grayScale = !grayScale;
     }
     public SaveData GetCurrentSaveData()
     {
         return currentSaveData;
     }
-<<<<<<< Updated upstream
-    
- 
-=======
 
 
->>>>>>> Stashed changes
 }
 
 
 [System.Serializable]
-<<<<<<< Updated upstream
-    public class SettingsValues
-    {
-        // public double masterVol;
-        // public double musicVol;
-        // public double soundVol;
-        // public float masterSliderVal;
-        // public float musicSliderVal;
-        // public float soundSliderVal;
-        // public float originalMusicVol;
-        // public float originalSoundVol;
-
-        public bool chinese;
-
-       
-    }
-
-
-
-
-
-    
-
-=======
 public class SettingsValues
 {
     // public double masterVol;
@@ -299,4 +237,3 @@ public class SettingsValues
 
 
 
->>>>>>> Stashed changes
