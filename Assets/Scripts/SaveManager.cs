@@ -31,7 +31,8 @@ public class SaveManager : MonoBehaviour
     private SoundManager sm;
 
     [SerializeField]
-    private GameObject saveSlot1, saveSlot2, saveSlot3;
+    // private GameObject saveSlot1, saveSlot2, saveSlot3;
+    private GameObject saveSlot1;
     private SaveData saveData1, saveData2, saveData3;
 
 
@@ -93,7 +94,8 @@ public class SaveManager : MonoBehaviour
     private void CheckData(string path)
     {
 
-        GameObject[] saveSlots = { saveSlot1, saveSlot2, saveSlot3 };
+        // GameObject[] saveSlots = { saveSlot1, saveSlot2, saveSlot3 };
+        GameObject[] saveSlots = { saveSlot1 };
         SaveData[] saveDatas = { saveData1, saveData2, saveData3 };
         for (int i = 0; i < 3; i++)
         {
@@ -129,7 +131,7 @@ public class SaveManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       
+
         if (scene.name != "MainMenu" && scene.name != "Credits" && !currentSaveData.GameBeat)
         {
             UpdateSaveFile(currentSaveData, scene.name);
@@ -137,7 +139,7 @@ public class SaveManager : MonoBehaviour
         }
         else if (scene.name == "Credits")
         {
-             Debug.Log("we did it joe!");
+            Debug.Log("we did it joe!");
             UpdateSaveFile(currentSaveData, scene.name);
             currentSaveData.currentLevel = "none";
             currentSaveData.currentSlotInfo = "Level Select Mode!";
@@ -147,7 +149,7 @@ public class SaveManager : MonoBehaviour
 
     private void UpdateSaveFile(SaveData currentSave, string sceneName)
     {
-        
+
         currentSave.currentLevel = sceneName;
         currentSave.currentSlotInfo = sceneName;
         Debug.Log("Saving! " + currentSave.saveDataName);
@@ -167,7 +169,7 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
-        
+
         return currentSaveData;
     }
 
