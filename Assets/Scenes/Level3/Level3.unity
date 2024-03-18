@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.12107873, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6342,12 +6342,8 @@ MonoBehaviour:
   m_VersionIndex: 22832
   m_IsSelectable: 1
   m_SelectedFaces: 
-  m_SelectedEdges:
-  - a: 347
-    b: 344
-  - a: 306
-    b: 307
-  m_SelectedVertices: 5b010000580100003201000033010000
+  m_SelectedEdges: []
+  m_SelectedVertices: 
 --- !u!1 &1497740946
 GameObject:
   m_ObjectHideFlags: 0

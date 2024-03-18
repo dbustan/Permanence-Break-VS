@@ -132,6 +132,7 @@ public class SaveManager : MonoBehaviour
         if (scene.name != "MainMenu" && scene.name != "Credits" && !currentSaveData.GameBeat)
         {
             UpdateSaveFile(currentSaveData, scene.name);
+            CreateSaveJSON();
         }
         else if (scene.name == "Credits")
         {
