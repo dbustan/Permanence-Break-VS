@@ -8,16 +8,16 @@ public class MovementTutorialScript : MonoBehaviour
 {
     public PlayerControllerPhysics playerController;
     public float startDelay;
-    private DialogueBox dialogueBox;
+    public DialogueBox dialogueBox;
     private float startTime;
     private int stage;
 
 
     void Start() {
-        dialogueBox = playerController.GetComponentInChildren<DialogueBox>();
         playerController.setMovementEnabled(false);
         startTime = Time.time;
         stage = 0;
+        Debug.Log(dialogueBox);
     }
 
     // Update is called once per frame

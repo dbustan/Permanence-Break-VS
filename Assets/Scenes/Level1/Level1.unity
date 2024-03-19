@@ -3877,6 +3877,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1279471794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 283574629927588198, guid: 8546243e06b58674fa1431c8de47cc3c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3133592243031767971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353d3f5723d8b3f2584d594e019aff9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1343530853
 GameObject:
   m_ObjectHideFlags: 0
@@ -8321,6 +8333,11 @@ PrefabInstance:
       propertyPath: startDelay
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6244533946665232854, guid: 1d0cfe4e4dd4d252e84dec2a1845465b,
+        type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 1279471794}
     - target: {fileID: 6244533946665232854, guid: 1d0cfe4e4dd4d252e84dec2a1845465b,
         type: 3}
       propertyPath: playerController
